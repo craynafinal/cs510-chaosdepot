@@ -1,3 +1,4 @@
+var constants = require('../constants');
 var keystone = require('keystone');
 var Types = keystone.Field.Types;
 
@@ -49,8 +50,8 @@ Enquiry.schema.methods.sendNotificationEmail = function (callback) {
 		}).send({
 			to: admins,
 			from: {
-				name: 'chaosdepot',
-				email: 'contact@chaosdepot.com',
+				name: constants.TEXT_APPNAME,
+				email: constants.EMAIL_ADMIN,
 			},
 			subject: 'New Enquiry for chaosdepot',
 			enquiry: enquiry,
