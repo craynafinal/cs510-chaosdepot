@@ -1,5 +1,5 @@
-// Prevent the Heroku app from sleeping
-require('./ping');
+// Constant variables
+var constants = require('./constants');
 
 // Simulate config options from your production environment by
 // customising the .env file in your project's root folder.
@@ -14,8 +14,8 @@ var handlebars = require('express-handlebars');
 // and documentation.
 
 keystone.init({
-	'name': 'chaosdepot',
-	'brand': 'chaosdepot',
+	'name': constants.TEXT_APPNAME,
+	'brand': constants.TEXT_APPNAME,
 
 	'less': 'public',
 	'static': 'public',
@@ -91,3 +91,6 @@ keystone.set('nav', {
 // Start Keystone to connect to your database and initialise the web server
 
 keystone.start();
+
+// Prevent the Heroku app from sleeping
+require('./ping');

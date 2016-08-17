@@ -1,5 +1,7 @@
 var http = require("http");
+var constants = require('./constants');
 
+// Requests get every 10 minutes
 setInterval(function() {
-    http.get("http://chaosdepot.herokuapp.com");
-}, 300000);
+    http.get(constants.URL_PING);
+}, 600000);
