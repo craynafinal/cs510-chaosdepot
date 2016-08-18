@@ -1,4 +1,3 @@
-var constants = require('../constants');
 var keystone = require('keystone');
 var Types = keystone.Field.Types;
 
@@ -45,13 +44,13 @@ Enquiry.schema.methods.sendNotificationEmail = function (callback) {
 		if (err) return callback(err);
 		new keystone.Email({
 			templateExt: 'hbs',
-			templateEngine: require('express-handlebars'),
+			templateEngine: require('handlebars'),
 			templateName: 'enquiry-notification',
 		}).send({
 			to: admins,
 			from: {
-				name: constants.TEXT_APPNAME,
-				email: constants.EMAIL_ADMIN,
+				name: 'chaosdepot',
+				email: 'contact@chaosdepot.herokuapp.com',
 			},
 			subject: 'New Enquiry for chaosdepot',
 			enquiry: enquiry,
