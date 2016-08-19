@@ -1,6 +1,19 @@
 var keystone = require('keystone');
 var Types = keystone.Field.Types;
 
+// Using nodemailer instead of Keystone Mandrill to avoid using a paid service
+var nodemailer = require('nodemailer');
+//var transporter = nodemailer.createTransport('smtps://user%40gmail.com:pass@smtp.gmail.com');
+var sgTransport = require('nodemailer-sendgrid-transport');
+
+var options = {
+    auth: {
+        api_key: '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'
+    }
+}
+
+var transporter = nodemailer.createTransport(sgTransport(options));
+
 /**
  * Enquiry Model
  * =============
@@ -42,6 +55,8 @@ Enquiry.schema.methods.sendNotificationEmail = function (callback) {
 	var enquiry = this;
 	keystone.list('User').model.find().where('isAdmin', true).exec(function (err, admins) {
 		if (err) return callback(err);
+
+    /*
 		new keystone.Email({
 			templateExt: 'hbs',
 			templateEngine: require('handlebars'),
@@ -55,6 +70,23 @@ Enquiry.schema.methods.sendNotificationEmail = function (callback) {
 			subject: 'New Enquiry for chaosdepot',
 			enquiry: enquiry,
 		}, callback);
+    */
+		console.log(enquiry);
+		var mailOptions = {
+			from: enquiry.email,
+			to: "jsl@pdx.edu",
+			subject: "title",
+			text: enquiry.message.md,
+			html: enquiry.message.html
+		};
+
+		console.log(mailOptions);
+
+		transporter.sendMail(mailOptions, function(error, info) {
+			if(error) { console.log(error); return callback(error); }
+			console.log("sent");
+			callback;
+		});
 	});
 };
 
