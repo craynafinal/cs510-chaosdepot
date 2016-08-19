@@ -3,12 +3,11 @@ var Types = keystone.Field.Types;
 
 // Using nodemailer instead of Keystone Mandrill to avoid using a paid service
 var nodemailer = require('nodemailer');
-//var transporter = nodemailer.createTransport('smtps://user%40gmail.com:pass@smtp.gmail.com');
 var sgTransport = require('nodemailer-sendgrid-transport');
 
 var options = {
     auth: {
-        api_key: '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'
+        api_key: process.env.SENDGRID_API
     }
 }
 
