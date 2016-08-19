@@ -1,5 +1,4 @@
-var keystone = require('keystone');
-var Types = keystone.Field.Types;
+var constants = require('../constants');
 
 // Using nodemailer instead of Keystone Mandrill to avoid using a paid service
 var nodemailer = require('nodemailer');
@@ -12,6 +11,9 @@ var options = {
 }
 
 var transporter = nodemailer.createTransport(sgTransport(options));
+
+var keystone = require('keystone');
+var Types = keystone.Field.Types;
 
 /**
  * Enquiry Model
@@ -55,35 +57,18 @@ Enquiry.schema.methods.sendNotificationEmail = function (callback) {
 	keystone.list('User').model.find().where('isAdmin', true).exec(function (err, admins) {
 		if (err) return callback(err);
 
-    /*
-		new keystone.Email({
-			templateExt: 'hbs',
-			templateEngine: require('handlebars'),
-			templateName: 'enquiry-notification',
-		}).send({
-			to: admins,
-			from: {
-				name: 'chaosdepot',
-				email: 'contact@chaosdepot.herokuapp.com',
-			},
-			subject: 'New Enquiry for chaosdepot',
-			enquiry: enquiry,
-		}, callback);
-    */
-		console.log(enquiry);
 		var mailOptions = {
 			from: enquiry.email,
-			to: "jsl@pdx.edu",
-			subject: "title",
+			to: admins.map(function(admin) {
+				return admin.email;
+			}).join(","),
+			subject: constants.TEXT_APPNAME + ": Received an email from " + enquiry.name.first,
 			text: enquiry.message.md,
 			html: enquiry.message.html
 		};
 
-		console.log(mailOptions);
-
 		transporter.sendMail(mailOptions, function(error, info) {
-			if(error) { console.log(error); return callback(error); }
-			console.log("sent");
+			if(error) return callback(error);
 			callback;
 		});
 	});
