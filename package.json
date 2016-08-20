@@ -12,7 +12,9 @@
     "handlebars": "^4.0.5",
     "dotenv": "^2.0.0",
     "nodemailer": "2.3",
-		"nodemailer-sendgrid-transport": "0.2"
+		"nodemailer-sendgrid-transport": "0.2",
+		"request": "2.74",
+		"i18n": "0.8"
   },
   "devDependencies": {
     "eslint": "^2.12.0",

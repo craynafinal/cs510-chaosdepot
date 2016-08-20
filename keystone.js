@@ -9,6 +9,14 @@ require('dotenv').config();
 var keystone = require('keystone');
 var handlebars = require('express-handlebars');
 
+// Multilanguage support
+var i18n = require("i18n");
+
+i18n.configure({
+	locales: ['en', 'ko'],
+	directory: __dirname + '/locales'
+});
+
 // Initialise Keystone with your project's configuration.
 // See http://keystonejs.com/guide/config for available options
 // and documentation.
@@ -37,6 +45,8 @@ keystone.init({
 	'session': true,
 	'auth': true,
 	'user model': 'User',
+
+	'wysiwyg cloudinary images': true,
 });
 
 // Load your project's Models
