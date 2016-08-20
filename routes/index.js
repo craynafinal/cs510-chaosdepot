@@ -38,6 +38,7 @@ var routes = {
 exports = module.exports = function (app) {
 	// Views
 	app.get('/', routes.views.index);
+	app.all('/search', routes.views.search);
 	app.get('/portfolio/:category?', routes.views.portfolio);
 	app.get('/portfolio/post/:post', routes.views.post);
 	app.all('/contact', routes.views.contact);
