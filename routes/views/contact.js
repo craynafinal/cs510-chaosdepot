@@ -3,13 +3,6 @@ var keystone = require('keystone');
 var Enquiry = keystone.list('Enquiry');
 var request = require('request');
 
-var reCAPTCHA = require('recaptcha2');
- 
-var recaptcha = new reCAPTCHA({
-  siteKey: process.env.RECAPTCHA_SITEKEY,
-  secretKey: process.env.RECAPTCHA_SECRET
-});
-
 exports = module.exports = function (req, res) {
 
 	var view = new keystone.View(req, res);
@@ -21,7 +14,6 @@ exports = module.exports = function (req, res) {
 	locals.formData = req.body || {};
 	locals.validationErrors = {};
 	locals.enquirySubmitted = false;
-	locals.captchaFailed = false;
 	locals.captchaSiteKey = process.env.RECAPTCHA_SITEKEY;
 	locals.captchaAPI = constants.URL_RECAPTCHA_API;
 
@@ -47,8 +39,6 @@ exports = module.exports = function (req, res) {
 	});
 
 	function checkAndSendMessage(next) {
-		locals.captchaFailed = false;
-
     var newEnquiry = new Enquiry.model();
     var updater = newEnquiry.getUpdateHandler(req);
 
@@ -67,7 +57,7 @@ exports = module.exports = function (req, res) {
 	}
 
 	function captchaFail(next) {
-		locals.captchaFailed = true;
+		req.flash('error', { detail: 'You must solve the captcha to send a message.' });
 		next();
 	}
 
