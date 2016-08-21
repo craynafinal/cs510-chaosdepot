@@ -2,7 +2,13 @@ var constants = require('../../constants');
 var keystone = require('keystone');
 var Enquiry = keystone.list('Enquiry');
 var request = require('request');
-var i18n = require('i18n');
+
+var reCAPTCHA = require('recaptcha2');
+ 
+var recaptcha = new reCAPTCHA({
+  siteKey: process.env.RECAPTCHA_SITEKEY,
+  secretKey: process.env.RECAPTCHA_SECRET
+});
 
 exports = module.exports = function (req, res) {
 
@@ -15,23 +21,13 @@ exports = module.exports = function (req, res) {
 	locals.formData = req.body || {};
 	locals.validationErrors = {};
 	locals.enquirySubmitted = false;
+	locals.captchaFailed = false;
 	locals.captchaSiteKey = process.env.RECAPTCHA_SITEKEY;
 	locals.captchaAPI = constants.URL_RECAPTCHA_API;
 
 	// On POST requests, add the Enquiry item to the database
 	view.on('post', { action: 'contact' }, function (next) {
 
-/*
-		if (req.body['g-recaptcha-response'] === null || req.body['g-recaptcha-response'] === undefined) {
-			console.log("ddd");
-			return false;
-		}
-*/
-
-		console.log(i18n.__('Hello'));
-
-
-/*
 		// Captcha verification
 		request.post(
 			constants.URL_RECAPTCHA_POST,
@@ -41,31 +37,39 @@ exports = module.exports = function (req, res) {
 				}
 			},
 			function (error, response, body) {
-				if (!error && response.statusCode == 200 && body.success) {
+				if (!error && response.statusCode == 200 && JSON.parse(body).success) {
+					checkAndSendMessage(next);
 				} else {
-					//locals.messages.error = 'test';
+					captchaFail(next);
 				}
 			}
 		);
-*/
-		var newEnquiry = new Enquiry.model();
-		var updater = newEnquiry.getUpdateHandler(req);
+	});
 
-		updater.process(req.body, {
-			flashErrors: true,
-			fields: 'name, email, phone, enquiryType, message',
-			errorMessage: 'There was a problem submitting your enquiry:',
-		}, function (err) {
-			if (err) {
-				console.log(err.errors);
-				locals.validationErrors = err.errors;
-			} else {
-				locals.enquirySubmitted = true;
-			}
+	function checkAndSendMessage(next) {
+		locals.captchaFailed = false;
+
+    var newEnquiry = new Enquiry.model();
+    var updater = newEnquiry.getUpdateHandler(req);
+
+    updater.process(req.body, {
+      flashErrors: true,
+      fields: 'name, email, phone, enquiryType, message',
+      errorMessage: 'There was a problem submitting your enquiry:',
+    }, function (err) {
+      if (err) {
+        locals.validationErrors = err.errors;
+      } else {
+        locals.enquirySubmitted = true;
+      }
 			next();
 		});
+	}
 
-	});
+	function captchaFail(next) {
+		locals.captchaFailed = true;
+		next();
+	}
 
 	view.render('contact');
 };
