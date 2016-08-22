@@ -10,19 +10,13 @@ exports = module.exports = function (req, res) {
 	locals.section = 'portfolio';
 	locals.filters = {
 		category: req.params.category,
+		search: req.params.search || "",
+		page: req.query.page || 1,
 	};
 	locals.data = {
 		posts: [],
 		categories: [],
 	};
-
-	// On post request, set the search key value for filtering
-	view.on('post', function (next) {
-		if (req.body.searchKey) {
-			locals.filters.searchKey = req.body.searchKey;
-		}
-		next();
-	});
 
 	// Load all categories
 	view.on('init', function (next) {
@@ -65,15 +59,13 @@ exports = module.exports = function (req, res) {
 	// Load the posts
 	view.on('init', function (next) {
 
-		var titleKey = req.body.searchKey ? req.body.searchKey : "";
-
 		var q = keystone.list('Post').paginate({
 			
-			page: req.query.page || 1,
+			page: locals.filters.page,
 			perPage: 10,
 			maxPages: 10,
 			filters: {
-				title: new RegExp('^(.*?)' + titleKey + '(.*?)$', "i"),
+				title: new RegExp('^(.*?)' + locals.filters.search + '(.*?)$', "i"),
 				state: 'published',
 			},
 		})

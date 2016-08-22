@@ -20,8 +20,6 @@ exports = module.exports = function (req, res) {
 
     console.log("post");
 
-		console.log(req.body);
-		console.log(req.body.searchKey);
    	 
     keystone.list('Post').model.find({
       title: new RegExp('^(.*?)' + req.body.searchKey + '(.*?)$', "i")

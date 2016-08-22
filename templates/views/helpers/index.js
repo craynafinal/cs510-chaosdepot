@@ -195,7 +195,7 @@ module.exports = function () {
 	_helpers.postUrl = function (category, postSlug, options) {
 		var prefix = '/nocategory';
 
-		if (category !== null && category !== undefined) {
+		if (category) {
 			prefix = '/' + category;
 		}
 		return (prefix + '/' + postSlug);
@@ -204,7 +204,7 @@ module.exports = function () {
 	// might be a ghost helper
 	// used for pagination urls on portfolio
 	_helpers.pageUrl = function (pageNumber, options) {
-		return '/?page=' + pageNumber;
+		return '?page=' + pageNumber;
 	};
 
 	// create the category url for a portfolio-category page

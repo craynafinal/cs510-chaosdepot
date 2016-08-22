@@ -4,14 +4,14 @@
 <div class="container">
 
 	<div>
-		<form method="post">
-			<input type="text" name="searchKey" class="form-control" value="">
+		<form method="get" action="/search/" onsubmit="return false;">
+      <input type="text" name="search" class="form-control" value="">
 
-			<div class="form-actions">
-				<button type="submit" class="btn btn-primary">Send</button>
-			</div>
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary" onclick="window.location.href=this.form.action + this.form.search.value;">Send</button>
+      </div>
 
-		</form>
+    </form>
 	</div>
 
 	<div class="row">
