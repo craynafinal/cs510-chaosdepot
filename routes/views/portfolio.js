@@ -16,6 +16,14 @@ exports = module.exports = function (req, res) {
 		categories: [],
 	};
 
+	// On post request, set the search key value for filtering
+	view.on('post', function (next) {
+		if (req.body.searchKey) {
+			locals.filters.searchKey = req.body.searchKey;
+		}
+		next();
+	});
+
 	// Load all categories
 	view.on('init', function (next) {
 
@@ -57,11 +65,15 @@ exports = module.exports = function (req, res) {
 	// Load the posts
 	view.on('init', function (next) {
 
+		var titleKey = req.body.searchKey ? req.body.searchKey : "";
+
 		var q = keystone.list('Post').paginate({
+			
 			page: req.query.page || 1,
 			perPage: 10,
 			maxPages: 10,
 			filters: {
+				title: new RegExp('^(.*?)' + titleKey + '(.*?)$', "i"),
 				state: 'published',
 			},
 		})
