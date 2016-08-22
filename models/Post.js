@@ -17,7 +17,7 @@ Post.add({
 	author: { type: Types.Relationship, ref: 'User', index: true },
 	state: { type: Types.Select, options: 'draft, published, archived', default: 'draft', index: true },
 	publishedDate: { type: Types.Date, default: Date.now, index: true, dependsOn: { state: 'published' } },
-	categories: { type: Types.Relationship, ref: 'PostCategory', many: true },
+	categories: { type: Types.Relationship, ref: 'PostCategory', many: true  },
 	style: { type: Types.Select, options: 'default, book, webapp', default: 'default', index: true },
 	link: { type: Types.Url, dependsOn: { style: 'webapp' } },
 	images: { type: Types.CloudinaryImages },

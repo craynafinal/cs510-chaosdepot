@@ -192,8 +192,13 @@ module.exports = function () {
 	// the routes by keynames to reduce the maintenance of changing urls
 
 	// Direct url link to a specific post
-	_helpers.postUrl = function (postSlug, options) {
-		return ('/portfolio/' + postSlug);
+	_helpers.postUrl = function (category, postSlug, options) {
+		var prefix = '/nocategory';
+
+		if (category !== null && category !== undefined) {
+			prefix = '/' + category;
+		}
+		return (prefix + '/' + postSlug);
 	};
 
 	// might be a ghost helper
