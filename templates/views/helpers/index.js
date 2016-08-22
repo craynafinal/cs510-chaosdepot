@@ -101,7 +101,7 @@ module.exports = function () {
 			if (autolink) {
 				return _.map(tags, function (tag) {
 					return linkTemplate({
-						url: ('/portfolio/' + tag.key),
+						url: ('/' + tag.key),
 						text: _.escape(tag.name),
 					});
 				}).join(separator);
@@ -193,18 +193,18 @@ module.exports = function () {
 
 	// Direct url link to a specific post
 	_helpers.postUrl = function (postSlug, options) {
-		return ('/portfolio/post/' + postSlug);
+		return ('/portfolio/' + postSlug);
 	};
 
 	// might be a ghost helper
 	// used for pagination urls on portfolio
 	_helpers.pageUrl = function (pageNumber, options) {
-		return '/portfolio?page=' + pageNumber;
+		return '/?page=' + pageNumber;
 	};
 
 	// create the category url for a portfolio-category page
 	_helpers.categoryUrl = function (categorySlug, options) {
-		return ('/portfolio/' + categorySlug);
+		return ('/' + categorySlug);
 	};
 
 	// ### Pagination Helpers

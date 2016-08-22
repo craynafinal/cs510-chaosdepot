@@ -26,8 +26,24 @@ var i18n = require("i18n");
 
 // Common Middleware
 keystone.pre('routes', middleware.initLocals);
+keystone.pre('routes', middleware.initErrorHandlers);
 keystone.pre('render', middleware.flashMessages);
 keystone.pre('routes', i18n.init);
+
+// Handle 404 errors
+keystone.set('404', function(req, res, next) {
+	res.notfound();
+});
+ 
+// Handle other errors
+keystone.set('500', function(err, req, res, next) {
+	var title, message;
+	if (err instanceof Error) {
+		message = err.message;
+		err = err.stack;
+	}
+	res.err(err, title, message);
+});
 
 // Import Route Controllers
 var routes = {
@@ -37,11 +53,12 @@ var routes = {
 // Setup Route Bindings
 exports = module.exports = function (app) {
 	// Views
-	app.get('/', routes.views.index);
+//	app.get('/', routes.views.index);
+	app.get('/about', routes.views.about);
 	app.all('/search', routes.views.search);
-	app.get('/portfolio/:category?', routes.views.portfolio);
-	app.get('/portfolio/post/:post', routes.views.post);
 	app.all('/contact', routes.views.contact);
+	app.get('/:category?', routes.views.portfolio);
+	app.get('/portfolio/:post', routes.views.post);
 
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
 	// app.get('/protected', middleware.requireUser, routes.views.protected);
