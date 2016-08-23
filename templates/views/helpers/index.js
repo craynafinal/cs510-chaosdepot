@@ -209,7 +209,7 @@ module.exports = function () {
 
 	// create the category url for a portfolio-category page
 	_helpers.categoryUrl = function (categorySlug, options) {
-		return ('/' + categorySlug);
+		return ('/category/' + categorySlug);
 	};
 
 	// ### Pagination Helpers

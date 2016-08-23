@@ -4,13 +4,19 @@
 <div class="container">
 
 	<div>
-		<form method="get" action="/search/" onsubmit="return false;">
+		<form method="get" onsubmit="return false;">
       <input type="text" name="search" class="form-control" value="">
-
+			<select name="category">
+				<option value="">Any</option>
+				{{# each data.categories }}
+        <option value="{{categoryUrl key}}">{{name}}</option>
+        {{/each}}
+			</select>				
       <div class="form-actions">
-        <button type="submit" class="btn btn-primary" onclick="window.location.href=this.form.action + this.form.search.value;">Send</button>
+        <button type="submit" class="btn btn-primary" onclick="window.location.href = this.form.category.value + '/search/' + this.form.search.value;">
+					Send
+				</button>
       </div>
-
     </form>
 	</div>
 
