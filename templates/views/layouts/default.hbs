@@ -56,6 +56,17 @@
 	<body>
 		<div id="header">
 			<div class="container">
+
+				<div>
+					<ul>
+						{{# each navLinks}}
+						<li {{#ifeq ../section key}}class="active"{{else}}{{/ifeq}}>
+							<a href="{{ href }}">{{ label }}</a>
+						</li>
+						{{/each}}
+					</ul>
+				</div>
+
 				<div role="navigation" class="navbar navbar-default">
 					<div class="container-fluid">
 						<div class="navbar-header">
@@ -67,18 +78,11 @@
 						</div>
 						<div class="collapse navbar-collapse">
 							<ul class="nav navbar-nav navbar-left">
-									{{# each navLinks}}
+									{{# each categoryLinks}}
 									<li {{#ifeq ../section key}}class="active"{{else}}{{/ifeq}}>
 										<a href="{{ href }}">{{ label }}</a>
 									</li>
 								{{/each}}
-							</ul>
-							<ul class="nav navbar-nav navbar-right">
-								{{#if user}}
-								<li><a href="/keystone/signout">Sign Out</a></li>
-								{{else}}
-								<li><a href="/keystone/signin">Sign In</a></li>
-								{{/if}}
 							</ul>
 						</div>
 					</div>
@@ -119,7 +123,7 @@
 		</div>
 		<div class="container">
 			<div id="footer">
-				<p>Powered by <a href="http://keystonejs.com" target="_blank">KeystoneJS</a>.</p>
+				<p>Copyright ⓒ {{date.year}} <a href="/contact">Chaos Depot</a>. All rights reserved.</p>
 			</div>
 		</div>
 		{{!--

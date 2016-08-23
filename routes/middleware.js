@@ -8,7 +8,7 @@
  * modules in your project's /lib directory.
  */
 var _ = require('lodash');
-
+var keystone = require('keystone');
 
 /**
 	Initialises the standard view locals
@@ -18,14 +18,43 @@ var _ = require('lodash');
 	or replace it with your own templates / logic.
 */
 exports.initLocals = function (req, res, next) {
+	getAllCategories(req, res, next);
+};
+
+function getAllCategories(req, res, next) {
+	// Category needed for menu bar	
+	keystone.list('PostCategory').model.find().sort('name').exec(function (err, results) {
+
+		if (err || !results.length) {
+			results = [];
+		}
+		
+		setupLocals(results, req, res, next);
+	});
+}
+
+function setupLocals(categories, req, res, next) {
+	// Keep the categories for other usages
+	res.locals.data = { categories: categories };
+
 	res.locals.navLinks = [
-		{ label: 'Home', key: 'home', href: '/' },
 		{ label: 'About', key: 'about', href: '/about' },
 		{ label: 'Contact', key: 'contact', href: '/contact' },
 	];
+
+	res.locals.categoryLinks = [ { label: 'Home', key: 'home', href: '/' } ];
+
+	for (var i in categories) {
+		res.locals.categoryLinks.push({ label: categories[i].name, key: categories[i].key, href: '/category/' + categories[i].key });
+	}
+
 	res.locals.user = req.user;
+
+	var date = new Date();
+	res.locals.date = { year: date.getFullYear() };
+
 	next();
-};
+}
 
 /**
   Inits the error handler functions into `res`
