@@ -4,38 +4,27 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv="Content-Language" content="{{locale}}"/> 
 
 		{{#if data.post}}
 				{{#if data.post.meta.title}}
-						<title>Chaos Depot: {{data.post.meta.title}}</title>
-						<meta property="og:title" content="{{data.post.meta.title}}">
-						<meta name="twitter:title" content="{{data.post.meta.title}}">
+						<title>{{title}}: {{data.post.meta.title}}</title>
 				{{else}}
-						<title>Chaos Depot: {{data.post.title}}</title>
-						<meta property="og:title" content="{{data.post.title}}">
-						<meta name="twitter:title" content="{{data.post.title}}">
+						<title>{{title}}: {{data.post.title}}</title>
 				{{/if}}
 				{{#if data.post.meta.description}}
 						<meta name="description" content="{{data.post.meta.description}}">
-						<meta property="og:description" content="{{data.post.meta.description}}">
-						<meta name="twitter:description" content="{{data.post.meta.description}}">
 				{{else}}
 						<meta name="description" content="{{data.post.content.brief}}">
-						<meta property="og:description" content="{{data.post.content.brief}}">
-						<meta name="twitter:description" content="{{data.post.content.brief}}">
 				{{/if}}
-				<meta property="og:type" content="article">
-				<meta property="og:image" content="{{data.post.image.url}}">
-				<meta property="og:url" content="{{data.post.fullPostUrl}}">
 				<meta property="article:published_time" content="{{data.post.publishedDate}}">
 				{{# each data.post.categories}}
 						<meta property="article:tag" content="{{name}}">
 				{{/each}}
 				<meta name="keywords" content="{{# each data.post.categories}}{{name}}, {{/each}}">    
 		{{else}}
-				<title>Chaos Depot: Drawings, Graphic Designs, and Programmings</title>
-				<meta name="description" content="general description">            
-				<meta property="og:image" content="{{baseUrl}}/images/logo.png">
+				<title>{{title}}: {{description}}</title>
+				<meta name="description" content="{{description}}">            
 				<meta name="keywords" content="Node.js, development, api">
 		{{/if}}  
 
@@ -123,11 +112,11 @@
 		</div>
 		<div class="container">
 			<div id="footer">
-				<p>Copyright ⓒ {{date.year}} <a href="/contact">Chaos Depot</a>. All rights reserved.</p>
+				<p>Copyright ⓒ {{date.year}} <a href="/contact">{{title}}</a>. All rights reserved.</p>
 
 				<select name="language" onchange="selectLanguage(this);">
 					<option value="">Select Language</option>
-					{{#each locales }}
+					{{#each locales}}
 					<option value="/{{this}}/">{{this}}</option>
 					{{/each}}
 				</select>

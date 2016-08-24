@@ -23,8 +23,8 @@ i18n.configure({
 // and documentation.
 
 keystone.init({
-	'name': constants.TEXT_APPNAME,
-	'brand': constants.TEXT_APPNAME,
+	'name': constants.TEXT_APP_NAME,
+	'brand': constants.TEXT_APP_NAME,
 
 	'less': 'public',
 	'static': 'public',
