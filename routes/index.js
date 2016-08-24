@@ -21,10 +21,10 @@
 var keystone = require('keystone');
 var middleware = require('./middleware');
 var importRoutes = keystone.importer(__dirname);
-
 var i18n = require("i18n");
 
 // Common Middleware
+keystone.pre('routes', middleware.detectLanguage);
 keystone.pre('routes', middleware.initLocals);
 keystone.pre('routes', middleware.initErrorHandlers);
 keystone.pre('render', middleware.flashMessages);
@@ -53,13 +53,13 @@ var routes = {
 // Setup Route Bindings
 exports = module.exports = function (app) {
 	// Views
-	app.get('/', routes.views.portfolio);
-	app.get('/about', routes.views.about);
-	app.all('/contact', routes.views.contact);
-	app.get('/category/:category?', routes.views.portfolio);
-	app.get('/search/:search?', routes.views.portfolio);
-	app.get('/category/:category/search/:search?', routes.views.portfolio);
-	app.get('/:category/:post', routes.views.post);
+	app.get('/:language/', routes.views.portfolio);
+	app.get('/:language/about', routes.views.about);
+	app.all('/:language/contact', routes.views.contact);
+	app.get('/:language/category/:category?', routes.views.portfolio);
+	app.get('/:language/search/:search?', routes.views.portfolio);
+	app.get('/:language/category/:category/search/:search?', routes.views.portfolio);
+	app.get('/:language/:category/:post', routes.views.post);
 
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
 	// app.get('/protected', middleware.requireUser, routes.views.protected);

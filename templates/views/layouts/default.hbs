@@ -124,6 +124,14 @@
 		<div class="container">
 			<div id="footer">
 				<p>Copyright ⓒ {{date.year}} <a href="/contact">Chaos Depot</a>. All rights reserved.</p>
+
+				<select name="language" onchange="if (this.selectedIndex.value !== '') window.location.href = '/' + this.options[this.selectedIndex].text;">
+					<option value="">Select Language</option>
+					{{#each locales }}
+					<option value="/{{this}}/">{{this}}</option>
+					{{/each}}
+				</select>
+
 			</div>
 		</div>
 		{{!--

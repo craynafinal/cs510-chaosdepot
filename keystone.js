@@ -14,7 +14,8 @@ var i18n = require("i18n");
 
 i18n.configure({
 	locales: ['en', 'ko'],
-	directory: __dirname + '/locales'
+	directory: __dirname + '/locales',
+	register: global,
 });
 
 // Initialise Keystone with your project's configuration.

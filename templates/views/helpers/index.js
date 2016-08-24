@@ -3,6 +3,7 @@ var _ = require('underscore');
 var hbs = require('handlebars');
 var keystone = require('keystone');
 var cloudinary = require('cloudinary');
+var i18n = require('i18n');
 
 // Collection of templates to interpolate
 var linkTemplate = _.template('<a href="<%= url %>"><%= text %></a>');
@@ -12,6 +13,15 @@ var cssLinkTemplate = _.template('<link href="<%= href %>" rel="stylesheet">');
 module.exports = function () {
 
 	var _helpers = {};
+
+	/**
+	 * i18n Locale Helper
+	 * ==================
+	 */
+	// performs __ operation of i18n
+	_helpers.__ = function (text, options) {
+		return i18n.__(text);
+	}
 
 	/**
 	 * Generic HBS Helpers
@@ -101,7 +111,7 @@ module.exports = function () {
 			if (autolink) {
 				return _.map(tags, function (tag) {
 					return linkTemplate({
-						url: ('/' + tag.key),
+						url: ('/category/' + tag.key),
 						text: _.escape(tag.name),
 					});
 				}).join(separator);

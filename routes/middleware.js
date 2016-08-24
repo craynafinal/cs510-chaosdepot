@@ -9,6 +9,7 @@
  */
 var _ = require('lodash');
 var keystone = require('keystone');
+var i18n = require('i18n');
 
 /**
 	Initialises the standard view locals
@@ -52,6 +53,8 @@ function setupLocals(categories, req, res, next) {
 
 	var date = new Date();
 	res.locals.date = { year: date.getFullYear() };
+
+	res.locals.locales = i18n.getLocales();
 
 	next();
 }
@@ -104,3 +107,22 @@ exports.requireUser = function (req, res, next) {
 		next();
 	}
 };
+
+/**
+	Handles locale settings and redirections
+ */
+exports.detectLanguage = function(req, res, next) {
+	var urlLocale = req.url.split('/')[1];
+
+	console.log(i18n.getLocales().length);
+
+	if (i18n.getLocales().indexOf(urlLocale) !== -1) {
+		i18n.setLocale(urlLocale);
+		next();
+	} else {
+		var currentLocale = i18n.getLocale();
+
+		res.redirect(urlLocale.length === 2 ? req.url.replace(urlLocale, currentLocale) : '/' + currentLocale + req.url); 
+	}
+
+}

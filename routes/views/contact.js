@@ -2,6 +2,7 @@ var constants = require('../../constants');
 var keystone = require('keystone');
 var Enquiry = keystone.list('Enquiry');
 var request = require('request');
+var i18n = require('i18n');
 
 exports = module.exports = function (req, res) {
 
@@ -15,7 +16,7 @@ exports = module.exports = function (req, res) {
 	locals.validationErrors = {};
 	locals.enquirySubmitted = false;
 	locals.captchaSiteKey = process.env.RECAPTCHA_SITEKEY;
-	locals.captchaAPI = constants.URL_RECAPTCHA_API;
+	locals.captchaAPI = constants.URL_RECAPTCHA_API + '?hl=' + i18n.getLocale();
 
 	// On POST requests, add the Enquiry item to the database
 	view.on('post', { action: 'contact' }, function (next) {
