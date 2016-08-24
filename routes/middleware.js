@@ -114,8 +114,6 @@ exports.requireUser = function (req, res, next) {
 exports.detectLanguage = function(req, res, next) {
 	var urlLocale = req.url.split('/')[1];
 
-	console.log(i18n.getLocales().length);
-
 	if (i18n.getLocales().indexOf(urlLocale) !== -1) {
 		i18n.setLocale(urlLocale);
 		next();

@@ -125,7 +125,7 @@
 			<div id="footer">
 				<p>Copyright ⓒ {{date.year}} <a href="/contact">Chaos Depot</a>. All rights reserved.</p>
 
-				<select name="language" onchange="if (this.selectedIndex.value !== '') window.location.href = '/' + this.options[this.selectedIndex].text;">
+				<select name="language" onchange="selectLanguage(this);">
 					<option value="">Select Language</option>
 					{{#each locales }}
 					<option value="/{{this}}/">{{this}}</option>
@@ -145,6 +145,11 @@
 			//- them specifically here, instead of bootstrap-3.3.5.min.js
 		--}}
 		<script src="/js/bootstrap/bootstrap-3.3.5.min.js"></script>
+
+		{{!--
+			//- Custom helper js
+		--}}
+		<script src="/js/helpers/global.js"></script>
 		{{{isAdminEditorJS user}}}
 	</body>
 </html>
