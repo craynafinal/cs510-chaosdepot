@@ -1,43 +1,20 @@
 <div class="container">
-	<h1>Portfolio</h1>
-</div>
-<div class="container">
-
-	<div>
-		<form method="get" onsubmit="return false;">
-      <input type="text" name="search" class="form-control" value="">
-			<select name="category">
-				<option value="">Any Category</option>
-				{{# each data.categories }}
-        <option value="{{categoryUrl key}}">{{name}}</option>
-        {{/each}}
-			</select>				
-      <div class="form-actions">
-        <button type="submit" class="btn btn-primary" onclick="searchPortfolio(this);">
-					Send
-				</button>
-      </div>
-    </form>
-	</div>
-
 	<div class="row">
-		<div class="col-sm-8 col-md-9">
-			<h4 class="text-weight-normal">{{data.posts.results.length}} found</h4>
-			<div class="portfolio">
-				{{# each data.posts.results}}
-				<div data-ks-editable="{{#if ../user}}{{adminEditableUrl ../../user _id}}{{/if}}" class="post">
-					{{# if ../filters.category}}
-						<h2><a href="{{postUrl ../filters.category slug}}">{{{title}}}</a></h2>
-					{{else}}
-						<h2><a href="{{postUrl categories.[0].key slug}}">{{{title}}}</a></h2>	
-					{{/if}}
-					<p class="lead text-muted">{{{categoryList categories}}}
-					</p>
-					{{#if images}}<img src="{{{cloudinaryUrl images.[0] width=160 height=160 crop='fill' gravity='north' }}}" class="img pull-right">{{/if}}
+		<div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+			<article>
+				<p><a href="/">&larr; back</a></p>
+				<hr>
+				<header>
+					<h1>{{data.portfolio.title}}</h1>
+					<h5>
+						{{{categoryList data.portfolio.categories prefix="Category: "}}}
+					</h5>
+				</header>
+				<div class="portfolio">
+					{{#each data.portfolio.images}}<img src="{{{cloudinaryUrl width=750 height=450 crop='fit' }}}" class="img-responsive">{{/each}}
+					{{{data.portfolio.content}}}
 				</div>
-				{{/each}}
-			</div>
+			</article>
 		</div>
 	</div>
-	{{>pagination}}
 </div>

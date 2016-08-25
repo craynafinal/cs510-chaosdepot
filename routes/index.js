@@ -53,13 +53,13 @@ var routes = {
 // Setup Route Bindings
 exports = module.exports = function (app) {
 	// Views
-	app.get('/:language/', routes.views.portfolio);
+	app.get('/:language/', routes.views.portfolios);
 	app.get('/:language/about', routes.views.about);
 	app.all('/:language/contact', routes.views.contact);
-	app.get('/:language/category/:category?', routes.views.portfolio);
-	app.get('/:language/search/:search?', routes.views.portfolio);
-	app.get('/:language/category/:category/search/:search?', routes.views.portfolio);
-	app.get('/:language/:category/:post', routes.views.post);
+	app.get('/:language/category/:category?', routes.views.portfolios);
+	app.get('/:language/search/:search?', routes.views.portfolios);
+	app.get('/:language/category/:category/search/:search?', routes.views.portfolios);
+	app.get('/:language/:category/:portfolio', routes.views.portfolio);
 
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
 	// app.get('/protected', middleware.requireUser, routes.views.protected);

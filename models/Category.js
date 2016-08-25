@@ -13,6 +13,6 @@ Category.add({
 	name: { type: String, required: true },
 });
 
-Category.relationship({ ref: 'Post', path: 'categories' });
+Category.relationship({ ref: 'Portfolio', path: 'categories' });
 
 Category.register();

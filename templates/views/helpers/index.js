@@ -93,7 +93,7 @@ module.exports = function () {
 	// *Usage example:*
 	// `{{categoryList categories separator=' - ' prefix='Filed under '}}`
 	//
-	// Returns an html-string of the categories on the post.
+	// Returns an html-string of the categories on the portfolio.
 	// By default, categories are separated by commas.
 	// input. categories:['tech', 'js']
 	// output. 'Filed Undder <a href="portfolio/tech">tech</a>, <a href="portfolio/js">js</a>'
@@ -152,10 +152,10 @@ module.exports = function () {
 		return new hbs.SafeString(output);
 	};
 
-	// Used to generate the link for the admin edit post button
+	// Used to generate the link for the admin edit portfolio button
 	_helpers.adminEditableUrl = function (user, options) {
 		var rtn = keystone.app.locals.editable(user, {
-			list: 'Post',
+			list: 'Portfolio',
 			id: options,
 		});
 		return rtn;
@@ -201,14 +201,14 @@ module.exports = function () {
 	// editing.  Should look at Django/Ghost which has an object layer to access
 	// the routes by keynames to reduce the maintenance of changing urls
 
-	// Direct url link to a specific post
-	_helpers.postUrl = function (category, postSlug, options) {
+	// Direct url link to a specific portfolio
+	_helpers.portfolioUrl = function (category, portfolioSlug, options) {
 		var prefix = '/nocategory';
 
 		if (category) {
 			prefix = '/' + category;
 		}
-		return (prefix + '/' + postSlug);
+		return (prefix + '/' + portfolioSlug);
 	};
 
 	// might be a ghost helper
@@ -227,16 +227,16 @@ module.exports = function () {
 	// Mostly generalized and with a small adjust to `_helper.pageUrl` could be universal for content types
 
 	/*
-	* expecting the data.posts context or an object literal that has `previous` and `next` properties
+	* expecting the data.portfolios context or an object literal that has `previous` and `next` properties
 	* ifBlock helpers in hbs - http://stackoverflow.com/questions/8554517/handlerbars-js-using-an-helper-function-in-a-if-statement
 	* */
-	_helpers.ifHasPagination = function (postContext, options) {
+	_helpers.ifHasPagination = function (portfolioContext, options) {
 		// if implementor fails to scope properly or has an empty data set
 		// better to display else block than throw an exception for undefined
-		if (_.isUndefined(postContext)) {
+		if (_.isUndefined(portfolioContext)) {
 			return options.inverse(this);
 		}
-		if (postContext.next || postContext.previous) {
+		if (portfolioContext.next || portfolioContext.previous) {
 			return options.fn(this);
 		}
 		return options.inverse(this);

@@ -1,60 +1,78 @@
 var keystone = require('keystone');
-var async = require('async');
 
 exports = module.exports = function (req, res) {
 
 	var view = new keystone.View(req, res);
 	var locals = res.locals;
 
-	locals.section = req.params.category || "home";
-
-	// Init locals
+	// Set locals
+	locals.section = 'portfolio';
 	locals.filters = {
+		portfolio: req.params.portfolio,
 		category: req.params.category,
-		search: req.params.search || "",
-		page: req.query.page || 1,
+	};
+	locals.data = {
+		portfolios: [],
 	};
 
-	// Category is always fetched from middleware
-	locals.data.posts = [];
-
-	// Load the current category filter
+	// Load the current portfolio
 	view.on('init', function (next) {
-
-		if (req.params.category) {
-			keystone.list('Category').model.findOne({ key: locals.filters.category }).exec(function (err, result) {
-				locals.data.category = result;
-				next(err);
-			});
+		var category = locals.filters.category;
+		if (category !== null && category !== undefined) {
+			if (category === 'nocategory') {
+				loadItem(null, next);
+			} else {	
+				loadCategoryItem(next);
+			}
 		} else {
-			next();
+			res.notfound();
 		}
 	});
 
-	// Load the posts
-	view.on('init', function (next) {
+	function loadCategoryItem(next) {
+		keystone.list('Category').model.findOne({ key: locals.filters.category }).exec(function (err, result) {
+			if (result === null || result === undefined) {
+				res.notfound();
+			} else {
+				loadItem(result, next);
+			}
+		});
+	}
 
-		var q = keystone.list('Post').paginate({
-			
-			page: locals.filters.page,
-			perPage: 10,
-			maxPages: 10,
-			filters: {
-				title: new RegExp('^(.*?)' + locals.filters.search + '(.*?)$', "i"),
-				state: 'published',
-			},
-		})
-			.sort('-publishedDate')
-			.populate('author categories');
+	function loadItem(category, next) {
+		var q = keystone.list('Portfolio').model.findOne({
+			state: 'published',
+			slug: locals.filters.portfolio,
+		}).populate('author categories');
 
-		if (locals.data.category) {
-			q.where('categories').in([locals.data.category]);
+		if (category !== null && category !== undefined) {
+			q.where('categories').in([category]);
+		} else {
+			q.where('categories').size(0);
 		}
 
+		q.exec(function (err, result) {
+			// If not found, return 404 error
+			if (result === null || result === undefined) {
+				res.notfound();
+			} else {
+				locals.data.portfolio = result;
+				next(err);
+			}
+		});
+	}
+
+	// Possible use for showing related items
+	// Load other portfolios
+	view.on('init', function (next) {
+
+		var q = keystone.list('Portfolio').model.find().where('state', 'published').sort('-publishedDate').populate('author').limit('4');
+
 		q.exec(function (err, results) {
-			locals.data.posts = results;
+			locals.data.portfolios = results;
 			next(err);
 		});
+
 	});
 
 	// Render the view

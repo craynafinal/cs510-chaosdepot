@@ -2,17 +2,17 @@ var keystone = require('keystone');
 var Types = keystone.Field.Types;
 
 /**
- * Post Model
- * ==========
+ * Portfolio Model
+ * ===============
  */
 
-var Post = new keystone.List('Post', {
+var Portfolio = new keystone.List('Portfolio', {
 	map: { name: 'title' },
 	autokey: { path: 'slug', from: 'title', unique: true },
 	sortable: true,
 });
 
-Post.add({
+Portfolio.add({
 	title: { type: String, required: true },
 	author: { type: Types.Relationship, ref: 'User', index: true },
 	state: { type: Types.Select, options: 'draft, published, archived', default: 'draft', index: true },
@@ -28,9 +28,9 @@ Post.add({
   },
 });
 
-Post.schema.virtual('content.full').get(function () {
+Portfolio.schema.virtual('content.full').get(function () {
 	return this.content.extended || this.content.brief;
 });
 
-Post.defaultColumns = 'title, state|20%, author|20%, publishedDate|20%';
-Post.register();
+Portfolio.defaultColumns = 'title, state|20%, author|20%, publishedDate|20%';
+Portfolio.register();
