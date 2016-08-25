@@ -49,7 +49,7 @@ function setupLocals(categories, req, res, next) {
 	res.locals.categoryLinks = [ { label: 'Home', key: 'home', href: '/' } ];
 
 	for (var i in categories) {
-		res.locals.categoryLinks.push({ label: categories[i].name, key: categories[i].key, href: '/category/' + categories[i].key });
+		res.locals.categoryLinks.push({ label: categories[i].name, key: categories[i].key, href: '/' + categories[i].key });
 	}
 
 	res.locals.user = req.user;

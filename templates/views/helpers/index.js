@@ -111,7 +111,7 @@ module.exports = function () {
 			if (autolink) {
 				return _.map(tags, function (tag) {
 					return linkTemplate({
-						url: ('/category/' + tag.key),
+						url: ('/' + tag.key),
 						text: _.escape(tag.name),
 					});
 				}).join(separator);
@@ -219,7 +219,7 @@ module.exports = function () {
 
 	// create the category url for a portfolio-category page
 	_helpers.categoryUrl = function (categorySlug, options) {
-		return ('/category/' + categorySlug);
+		return ('/' + categorySlug);
 	};
 
 	// ### Pagination Helpers

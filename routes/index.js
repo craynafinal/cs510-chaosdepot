@@ -56,9 +56,8 @@ exports = module.exports = function (app) {
 	app.get('/:language/', routes.views.portfolios);
 	app.get('/:language/about', routes.views.about);
 	app.all('/:language/contact', routes.views.contact);
-	app.get('/:language/category/:category?', routes.views.portfolios);
-	app.get('/:language/search/:search?', routes.views.portfolios);
-	app.get('/:language/category/:category/search/:search?', routes.views.portfolios);
+	app.get('/:language/:category?', routes.views.portfolios);
+	app.get('/:language/:category?/search/:search?', routes.views.portfolios);
 	app.get('/:language/:category/:portfolio', routes.views.portfolio);
 
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
