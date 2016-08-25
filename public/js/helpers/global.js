@@ -14,3 +14,7 @@ function selectLanguage(select) {
 function searchPortfolio(searchForm) {
 	window.location.href = searchForm.form.category.value + '/search/' + searchForm.form.search.value;
 }
+
+function goBack() {
+  window.history.back();
+}
