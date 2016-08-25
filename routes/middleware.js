@@ -41,12 +41,13 @@ function setupLocals(categories, req, res, next) {
 
 	// Menus excluding categories
 	res.locals.navLinks = [
+	  { label: 'Home', key: 'home', href: '/' },
 		{ label: 'About', key: 'about', href: '/about' },
 		{ label: 'Contact', key: 'contact', href: '/contact' },
 	];
 
 	// Menus for categories
-	res.locals.categoryLinks = [ { label: 'Home', key: 'home', href: '/' } ];
+	res.locals.categoryLinks = [];
 
 	for (var i in categories) {
 		res.locals.categoryLinks.push({ label: categories[i].name, key: categories[i].key, href: '/' + categories[i].key });
