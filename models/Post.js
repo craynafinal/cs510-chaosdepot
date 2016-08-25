@@ -20,7 +20,7 @@ Post.add({
 	categories: { type: Types.Relationship, ref: 'PostCategory', many: true  },
 	style: { type: Types.Select, options: 'default, book, webapp', default: 'default', index: true },
 	link: { type: Types.Url, dependsOn: { style: 'webapp' } },
-	images: { type: Types.CloudinaryImages },
+	images: { type: Types.CloudinaryImages, autoCleanup: true },
 	content: { type: Types.Html, wysiwyg: true, height: 400 },
   meta: {
 		title: { type: String },

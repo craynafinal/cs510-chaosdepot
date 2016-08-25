@@ -123,7 +123,10 @@ exports.requireUser = function (req, res, next) {
 exports.detectLanguage = function(req, res, next) {
 	var urlLocale = req.url.split('/')[1];
 
-	if (i18n.getLocales().indexOf(urlLocale) !== -1) {
+	// Leave keystone for admin login
+	if (urlLocale === 'keystone') {
+		next();
+	} else if (i18n.getLocales().indexOf(urlLocale) !== -1) {
 		i18n.setLocale(urlLocale);
 		next();
 	} else {
