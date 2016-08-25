@@ -30,7 +30,7 @@ exports = module.exports = function (req, res) {
 	});
 
 	function loadCategoryItem(next) {
-		keystone.list('PostCategory').model.findOne({ key: locals.filters.category }).exec(function (err, result) {
+		keystone.list('Category').model.findOne({ key: locals.filters.category }).exec(function (err, result) {
 			if (result === null || result === undefined) {
 				res.notfound();
 			} else {

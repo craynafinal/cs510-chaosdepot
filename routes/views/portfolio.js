@@ -22,7 +22,7 @@ exports = module.exports = function (req, res) {
 	view.on('init', function (next) {
 
 		if (req.params.category) {
-			keystone.list('PostCategory').model.findOne({ key: locals.filters.category }).exec(function (err, result) {
+			keystone.list('Category').model.findOne({ key: locals.filters.category }).exec(function (err, result) {
 				locals.data.category = result;
 				next(err);
 			});

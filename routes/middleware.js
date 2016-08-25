@@ -25,7 +25,7 @@ exports.initLocals = function (req, res, next) {
 
 function getAllCategories(req, res, next) {
 	// Category needed for menu bar	
-	keystone.list('PostCategory').model.find().sort('name').exec(function (err, results) {
+	keystone.list('Category').model.find().sort('name').exec(function (err, results) {
 
 		if (err || !results.length) {
 			results = [];
