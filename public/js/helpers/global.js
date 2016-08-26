@@ -1,3 +1,19 @@
+/*
+$('.grid').masonry({
+  // options
+  itemSelector: '.grid-item',
+  columnWidth: 200
+});
+*/
+var $container = $('.masonry-container');
+
+$container.imagesLoaded( function () {
+  $container.masonry({
+    columnWidth: '.item',
+    itemSelector: '.item'
+  });   
+});
+
 function selectLanguage(select) {
 	if (select.selectedIndex.value !== '') {
 		var urlPart = window.location.pathname.split('/')[1];

@@ -3,10 +3,10 @@
 </div>
 <div class="container">
 
-	<div>
+	<div class="search">
 		<form method="get" onsubmit="return false;">
       <input type="text" name="search" class="form-control" value="">
-			<select name="category">
+			<select name="category" class="form-control">
 				<option value="">Any Category</option>
 				{{# each data.categories }}
         <option value="{{categoryUrl key}}">{{name}}</option>
@@ -20,24 +20,31 @@
     </form>
 	</div>
 
-	<div class="row">
-		<div class="col-sm-8 col-md-9">
-			<h4 class="text-weight-normal">{{data.portfolios.results.length}} found</h4>
-			<div class="portfolio">
-				{{# each data.portfolios.results}}
-				<div data-ks-editable="{{#if ../user}}{{adminEditableUrl ../../user _id}}{{/if}}" class="portfolio">
+	<h4 class="text-weight-normal">{{data.portfolios.results.length}} found</h4>
+
+	<div class="row masonry-container">
+		{{# each data.portfolios.results}}
+		<div class="col-sm-12 col-md-6 col-lg-4 item">
+			<div data-ks-editable="{{#if ../user}}{{adminEditableUrl ../../user _id}}{{/if}}" class="thumbnail">
+
+				{{#if images}}
+				<img src="{{{cloudinaryUrl images.[0] width=300 height=300 crop='fill' gravity='north' }}}" class="img">
+				{{/if}}
+
+				<div class="caption">
 					{{# if ../filters.category}}
 						<h2><a href="{{portfolioUrl ../filters.category slug}}">{{{title}}}</a></h2>
 					{{else}}
 						<h2><a href="{{portfolioUrl categories.[0].key slug}}">{{{title}}}</a></h2>	
 					{{/if}}
-					<p class="lead text-muted">{{{categoryList categories}}}
-					</p>
-					{{#if images}}<img src="{{{cloudinaryUrl images.[0] width=160 height=160 crop='fill' gravity='north' }}}" class="img pull-right">{{/if}}
+					<p class="lead text-muted">{{{categoryList categories}}}</p>
 				</div>
-				{{/each}}
+
 			</div>
 		</div>
+		{{/each}}
 	</div>
+
 	{{>pagination}}
+
 </div>
