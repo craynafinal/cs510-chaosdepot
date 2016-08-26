@@ -1,25 +1,4 @@
 <div class="container">
-	<h1>Portfolio</h1>
-</div>
-<div class="container">
-
-	<div class="search">
-		<form method="get" onsubmit="return false;">
-      <input type="text" name="search" class="form-control" value="">
-			<select name="category" class="form-control">
-				<option value="">Any Category</option>
-				{{# each data.categories }}
-        <option value="{{categoryUrl key}}">{{name}}</option>
-        {{/each}}
-			</select>				
-      <div class="form-actions">
-        <button type="submit" class="btn btn-primary" onclick="searchPortfolio(this)">
-					Send
-				</button>
-      </div>
-    </form>
-	</div>
-
 	<h4 class="text-weight-normal">{{data.portfolios.results.length}} found</h4>
 
 	<div class="row masonry-container">
@@ -28,7 +7,7 @@
 			<div data-ks-editable="{{#if ../user}}{{adminEditableUrl ../../user _id}}{{/if}}" class="thumbnail">
 
 				{{#if images}}
-				<img src="{{{cloudinaryUrl images.[0] width=300 height=300 crop='fill' gravity='north' }}}" class="img">
+				<img src="{{{cloudinaryUrl images.[0] width=300 gravity='north' }}}" class="img">
 				{{/if}}
 
 				<div class="caption">
@@ -38,6 +17,7 @@
 						<h2><a href="{{portfolioUrl categories.[0].key slug}}">{{{title}}}</a></h2>	
 					{{/if}}
 					<p class="lead text-muted">{{{categoryList categories}}}</p>
+					<p>{{date publishedDate}}</p>
 				</div>
 
 			</div>

@@ -1,10 +1,3 @@
-/*
-$('.grid').masonry({
-  // options
-  itemSelector: '.grid-item',
-  columnWidth: 200
-});
-*/
 var $container = $('.masonry-container');
 
 $container.imagesLoaded( function () {
