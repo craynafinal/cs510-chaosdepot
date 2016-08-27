@@ -17,8 +17,9 @@
 }
 
 /* Font override starts */
-h1, h2 {
+h1, h2, h3, h4 {
 	font-family: 'Aero Matics Regular';
+	margin-top: 0px;
 }
 /* Font override ends */
 
@@ -33,7 +34,7 @@ h1, h2 {
 }
 
 #body {
-	margin-top: 10px;
+	margin-top: 30px;
 }
 
 /* Masonry thumbnail adjustment starts */
@@ -44,8 +45,38 @@ body {
   padding: 0px 0px 4px 0px;
 }
 
-.thumbnail > img {
+.thumbnail > a > img {
   border-radius: 4px 4px 0px 0px;
 	width: 100%;
 }
+
+.caption > h2 {
+	margin-top: 4px;
+}
+
+.caption > .lead {
+	font-size: 16px;
+}
+
+.caption > hr {
+	margin: -10px 0px 10px 0px;
+	border-top: 1px dashed #eeeeee;
+}
+
+.caption > .date {
+	margin-bottom: 0px;
+}
+
 /* Masonry thumbnail adjustment ends */
+
+/* Small screen specific adjustment starts */
+@media(max-width: @container-tablet) {
+	.navbar-brand {
+		padding: 8px 0px 0px 12px;
+	}
+
+	#body {
+		margin-top: 10px;
+	}
+}
+/* Small screen specific adjustment ends */

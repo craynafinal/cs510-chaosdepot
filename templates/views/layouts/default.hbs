@@ -149,40 +149,38 @@
 						</div>
 					</nav>
 				</div>
-				<div class="col-sm-8 col-md-9 col-lg-9">
-					<div class="container-fluid">
-						<div id="body">
-							<!--
-								Flash messages allow you to display once-off status messages to users, e.g. form
-								validation errors, success messages, etc
-							-->
-							{{#if messages}}
-							<div id="flash-messages" class="container-fluid">
-								{{#if messages.info}}
-								<div class="alert alert-info">
-										{{{flashMessages messages.info}}}
-								</div>
-								{{/if}}
-								{{#if messages.success}}
-								<div class="alert alert-success">
-										{{{flashMessages messages.success}}}
-								</div>
-								{{/if}}
-								{{#if messages.warning}}
-								<div class="alert alert-warning">
-										{{{flashMessages messages.warning}}}
-								</div>
-								{{/if}}
-								{{#if messages.error}}
-								<div class="alert alert-danger">
-										{{{flashMessages messages.error}}}
-								</div>
-								{{/if}}
+				<div class="col-sm-8 col-md-9 col-lg-9 container-fluid">
+					<div id="body">
+						<!--
+							Flash messages allow you to display once-off status messages to users, e.g. form
+							validation errors, success messages, etc
+						-->
+						{{#if messages}}
+						<div id="flash-messages" class="container-fluid">
+							{{#if messages.info}}
+							<div class="alert alert-info">
+									{{{flashMessages messages.info}}}
 							</div>
 							{{/if}}
-							<!-- The content block should contain the body of your template's content-->
-							{{{body}}}
+							{{#if messages.success}}
+							<div class="alert alert-success">
+									{{{flashMessages messages.success}}}
+							</div>
+							{{/if}}
+							{{#if messages.warning}}
+							<div class="alert alert-warning">
+									{{{flashMessages messages.warning}}}
+							</div>
+							{{/if}}
+							{{#if messages.error}}
+							<div class="alert alert-danger">
+									{{{flashMessages messages.error}}}
+							</div>
+							{{/if}}
 						</div>
+						{{/if}}
+						<!-- The content block should contain the body of your template's content-->
+						{{{body}}}
 					</div>
 				</div>
 			</div>
