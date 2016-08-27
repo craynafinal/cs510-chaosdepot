@@ -1,3 +1,21 @@
 {
-	"Hello": "Hello"
+	"Hello": "Hello",
+	"Home": "Home",
+	"About": "About",
+	"Contact": "Contact",
+	"category1": "category1",
+	"category2": "category2",
+	"Categories": "Categories",
+	"Search Portfolio": "Search Portfolio",
+	"Any Category": "Any Category",
+	"Name": "Name",
+	"Email": "Email",
+	"Phone": "Phone",
+	"Message": "Message",
+	"Leave a message here": "Leave a message here",
+	"Submit": "Submit",
+	"optional": "optional",
+	"Select Language": "Select Language",
+	"en": "en",
+	"ko": "ko"
 }

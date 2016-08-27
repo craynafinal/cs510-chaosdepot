@@ -13,6 +13,8 @@ i18n.configure({
 	locales: ['en', 'ko'],
 	directory: __dirname + '/locales',
 	register: global,
+	autoReload: true,
+	updateFiles: true,
 });
 
 // Initialise Keystone with your project's configuration.

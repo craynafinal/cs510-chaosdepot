@@ -1,3 +1,22 @@
 {
-	"Hello": "안녕하세요"
+	"Hello": "안녕하세요",
+	"Home": "홈",
+	"About": "소개",
+	"Contact": "문의하기",
+	"category1": "category1",
+	"category2": "category2",
+	"Categories": "카테고리",
+	"Any Category": "전체",
+	"Submit": "확인",
+	"Select Language": "언어선택",
+	"en": "영어",
+	"ko": "한국어",
+	"Search Portfolio": "검색",
+	"Name": "이름",
+	"Email": "이메일",
+	"Phone": "전화번호",
+	"optional": "선택사항",
+	"Message": "메세지",
+	"Leave a message here": "여기에 메세지를 남겨주세요",
+	"Your message has been successfully sent!": "메세지가 성공적으로 전송되었습니다!"
 }

@@ -1,18 +1,28 @@
-<div class="container-fluid">
-	<div class="row">
-		<article>
-			<p><a onclick="goBack()">&larr; back</a></p>
-			<hr>
-			<header>
-				<h1>{{data.portfolio.title}}</h1>
-				<h5>
-					{{{categoryList data.portfolio.categories prefix="Category: "}}}
-				</h5>
-			</header>
-			<div class="portfolio">
-				{{#each data.portfolio.images}}<img src="{{{cloudinaryUrl width=750 height=450 crop='fit' }}}" class="img-responsive">{{/each}}
-				{{{data.portfolio.content}}}
-			</div>
-		</article>
+<article>
+	<p><a href="#" onclick="goBack()">&larr; back</a></p>
+	<hr>
+	<header>
+		<h1>{{data.portfolio.title}}</h1>
+		<h5>
+			{{{categoryList data.portfolio.categories prefix="Category: "}}}
+		</h5>
+		<h5>
+			{{date data.portfolio.publishedDate}}
+		</h5>
+	</header>
+	<div class="portfolio">
+		{{#ifeq data.portfolio.style "book"}}
+		book
+		{{else}} {{#ifeq data.portfolio.style "webapp"}}
+		<a class="btn btn-large btn-info" target="_blank" href="{{data.portfolio.link}}">View App</a>
+		{{#each data.portfolio.images}}
+		<img src="{{{cloudinaryUrl height=450 crop='fill'}}}" class="img-responsive">
+		{{/each}}
+		{{else}}			
+		{{#each data.portfolio.images}}
+		<img src="{{{cloudinaryUrl height=450 crop='fill'}}}" class="img-responsive">
+		{{/each}}
+		{{{data.portfolio.content}}}
+		{{/ifeq}}{{/ifeq}}
 	</div>
-</div>
+</article>

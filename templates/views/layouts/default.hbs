@@ -30,8 +30,7 @@
 
 		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 		<link href="/styles/site.min.css" rel="stylesheet">
-		<link href="/styles/navbar-fixed-side.css" rel="stylesheet">
-		<link href="/styles/custom.css" rel="stylesheet">
+		<link href="/styles/side_navbar/navbar-fixed-side.css" rel="stylesheet">
 
 		{{!-- This file provides the default styling for the KeystoneJS Content Editor
 			- only renders when user is logged in and admin--}}
@@ -47,7 +46,7 @@
 	<body>
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-sm-3 col-lg-2">
+				<div class="col-sm-4 col-md-3 col-lg-3">
 					<nav class="navbar navbar-default navbar-fixed-side">	
 						<div class="container">
 							<div class="navbar-header">
@@ -71,18 +70,18 @@
 								<ul class="nav navbar-nav">
 									{{# each navLinks}}
 									<li {{#ifeq ../section key}}class="active"{{else}}{{/ifeq}}>
-										<a href="{{href}}">{{label}}</a>
+										<a href="{{href}}">{{__ label}}</a>
 									</li>
 									{{/each}}
 									<li class="dropdown">
 										<a class="dropdown-togle" data-toggle="dropdown" href="#">
-											Categories
+											{{__ "Categories"}}
 											<b class="caret"></b>
 										</a>
 										<ul class="dropdown-menu">
 											{{# each categoryLinks}}
 											<li {{#ifeq category key}}class="active"{{else}}{{/ifeq}}>
-												<a href="{{href}}">{{label}}</a>
+												<a href="{{href}}">{{__ label}}</a>
 											</li>
 											{{/each}}
 										</ul>
@@ -91,21 +90,55 @@
 								<!--search bar starts-->
 								<form class="navbar-form navbar-left" method="get" onsubmit="return false;">
 									<div class="form-group">
-										<input type="text" name="search" class="form-control" placeholder="Search Portfolio">
+										<input type="text" name="search" class="form-control" placeholder={{__ "Search Portfolio"}}>
 										<select name="category" class="form-control">
-											<option value="">Any Category</option>
+											<option value="">{{__ "Any Category"}}</option>
 											{{# each data.categories}}
-											<option value="{{categoryUrl key}}">{{name}}</option>
+											<option value="{{categoryUrl key}}">{{__ name}}</option>
 											{{/each}}
 										</select>
 									</div>
 									<div class="form-actions">
 										<button type="submit" class="btn btn-default" onclick="searchPortfolio(this)">
-											Submit
+											{{__ "Submit"}}
 										</button>
 									</div>
 								</form>
 								<!--search bar ends-->
+<!--
+								<form class="navbar-form pull-left" role="search" method="get" id="searchform" action="/">
+									<div class="input-group">
+										<div class="input-group-btn">
+											<button type="button" id="searchcategory" value="BLOG" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">BLOG <span class="caret"></span></button>
+
+											<ul id="searchdropdown" class="dropdown-menu" role="menu">
+												<li><a href="javascript:void(0)">BLOG</a></li>
+												<li><a href="javascript:void(0)">FORUM</a></li>
+												<li><a href="javascript:void(0)">DOCS</a></li>
+												<li class="divider"></li>
+												<li><a href="javascript:void(0)">ANY</a></li>          
+											</ul>
+										</div>
+										<input type="text" class="form-control" value="" placeholder="Search..." name="s" id="s">
+										<div class="input-group-btn">
+											<button type="submit" id="searchsubmit" value="Search" class="btn btn-success"><span class="glyphicon glyphicon-search"></span></button>
+										</div>
+									</div>
+								</form> 
+-->
+								<!--language bar starts-->
+								<form class="navbar-form navbar-left">
+									<label>{{__ "Select Language"}}
+										<select name="language" onchange="selectLanguage(this)" class="form-control">
+											{{#each locales}}
+											<option value="{{this}}"{{#ifeq ../currentLocale this}}selected{{else}}{{/ifeq}}>
+												{{__ this}}
+											</option>
+											{{/each}}
+										</select>
+									</label>
+								</form>
+								<!--language bar ends-->
 								<!--copyright starts-->
 								<p class="navbar-text">
 									Copyright ⓒ {{date.year}} <a href="/contact">{{title}}</a>. All rights reserved.
@@ -116,7 +149,7 @@
 						</div>
 					</nav>
 				</div>
-				<div class="col-sm-9 col-lg-10">
+				<div class="col-sm-8 col-md-9 col-lg-9">
 					<div class="container-fluid">
 						<div id="body">
 							<!--
@@ -124,7 +157,7 @@
 								validation errors, success messages, etc
 							-->
 							{{#if messages}}
-							<div id="flash-messages" class="container">
+							<div id="flash-messages" class="container-fluid">
 								{{#if messages.info}}
 								<div class="alert alert-info">
 										{{{flashMessages messages.info}}}

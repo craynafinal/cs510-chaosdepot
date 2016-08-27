@@ -1,16 +1,26 @@
-var $container = $('.masonry-container');
+$(document).ready(function() {
 
-$container.imagesLoaded( function () {
-  $container.masonry({
-    columnWidth: '.item',
-    itemSelector: '.item'
-  });   
+	// Masonry setup
+	var $container = $('.masonry-container');
+
+	$container.imagesLoaded( function () {
+		$container.masonry({
+			columnWidth: '.item',
+			itemSelector: '.item'
+		});   
+	});
+
+	$("#searchdropdown li a").click(function(){
+		$("#searchcategory").html($(this).text() + ' <span class="caret"></span>');
+      	$("#searchcategory").val($(this).text());
+	});
+
 });
 
 function selectLanguage(select) {
 	if (select.selectedIndex.value !== '') {
 		var urlPart = window.location.pathname.split('/')[1];
-		var selected = select.options[select.selectedIndex].text;
+		var selected = select.options[select.selectedIndex].value;
 
 		if (urlPart.length === 2) {
 			window.location.href = window.location.pathname.replace(urlPart, selected);
@@ -25,5 +35,6 @@ function searchPortfolio(searchForm) {
 }
 
 function goBack() {
-  window.history.back();
+	window.history.back();
 }
+

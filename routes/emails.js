@@ -26,7 +26,6 @@ module.exports = {
 			name: { first: 'Test', last: 'User' },
 			email: 'contact@chaosdepot.herokuapp.com',
 			phone: '+61 2 1234 5678',
-			enquiryType: 'message',
 			message: { md: 'Nice enquiry notification.' },
 		});
 
