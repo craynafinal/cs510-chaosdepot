@@ -1,4 +1,3 @@
-var constants = require('../../constants');
 var keystone = require('keystone');
 var Enquiry = keystone.list('Enquiry');
 var request = require('request');
@@ -16,14 +15,13 @@ exports = module.exports = function (req, res) {
 	locals.validationErrors = {};
 	locals.enquirySubmitted = false;
 	locals.captchaSiteKey = process.env.RECAPTCHA_SITEKEY;
-	locals.captchaAPI = constants.URL_RECAPTCHA_API + '?hl=' + i18n.getLocale();
 
 	// On POST requests, add the Enquiry item to the database
 	view.on('post', { action: 'contact' }, function (next) {
 
 		// Captcha verification
 		request.post(
-			constants.URL_RECAPTCHA_POST,
+			'https://www.google.com/recaptcha/api/siteverify',
 			{ form: {
 					secret: process.env.RECAPTCHA_SECRET,
 					response: req.body['g-recaptcha-response']

@@ -11,7 +11,6 @@
  * can be previewed at /keystone/test-email/{key}
  */
 
-var constants = require('../constants');
 var keystone = require('keystone');
 
 module.exports = {

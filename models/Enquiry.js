@@ -1,5 +1,3 @@
-var constants = require('../constants');
-
 // Using nodemailer instead of Keystone Mandrill to avoid using a paid service
 var nodemailer = require('nodemailer');
 var sgTransport = require('nodemailer-sendgrid-transport');
@@ -62,7 +60,7 @@ Enquiry.schema.methods.sendNotificationEmail = function (callback) {
 			to: admins.map(function(admin) {
 				return admin.email;
 			}).join(","),
-			subject: constants.TEXT_APP_NAME + ": Received an email from " + enquiry.name.first,
+			subject: "Received an email from " + enquiry.name.first,
 			text: enquiry.message.md,
 			html: enquiry.message.html
 		};

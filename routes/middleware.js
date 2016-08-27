@@ -10,7 +10,6 @@
 var _ = require('lodash');
 var keystone = require('keystone');
 var i18n = require('i18n');
-var constants = require('../constants'); 
 
 /**
 	Initialises the standard view locals
@@ -41,7 +40,7 @@ function setupLocals(categories, req, res, next) {
 
 	// Menus excluding categories
 	res.locals.navLinks = [
-	  { label: 'Home', key: 'home', href: '/' },
+	  { label: 'Home', key: 'portfolios', href: '/' },
 		{ label: 'About', key: 'about', href: '/about' },
 		{ label: 'Contact', key: 'contact', href: '/contact' },
 	];
@@ -60,11 +59,10 @@ function setupLocals(categories, req, res, next) {
 
 	// Get all locales for language selector at the bottom
 	res.locals.locales = i18n.getLocales();
-	res.locals.locale = i18n.getLocale();
 
 	// Get text information
-	res.locals.title = constants.TEXT_APP_NAME;
-	res.locals.description = constants.TEXT_APP_DESCRIPTION;
+	res.locals.title = keystone._options.name;
+	res.locals.description = keystone._options.description;
 
 	next();
 }
@@ -129,6 +127,7 @@ exports.detectLanguage = function(req, res, next) {
 		next();
 	} else if (i18n.getLocales().indexOf(urlLocale) !== -1) {
 		i18n.setLocale(urlLocale);
+		res.locals.currentLocale = i18n.getLocale();
 		next();
 	} else {
 		var currentLocale = i18n.getLocale();

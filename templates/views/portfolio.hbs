@@ -1,20 +1,18 @@
-<div class="container">
+<div class="container-fluid">
 	<div class="row">
-		<div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-			<article>
-				<p><a onclick="goBack()">&larr; back</a></p>
-				<hr>
-				<header>
-					<h1>{{data.portfolio.title}}</h1>
-					<h5>
-						{{{categoryList data.portfolio.categories prefix="Category: "}}}
-					</h5>
-				</header>
-				<div class="portfolio">
-					{{#each data.portfolio.images}}<img src="{{{cloudinaryUrl width=750 height=450 crop='fit' }}}" class="img-responsive">{{/each}}
-					{{{data.portfolio.content}}}
-				</div>
-			</article>
-		</div>
+		<article>
+			<p><a onclick="goBack()">&larr; back</a></p>
+			<hr>
+			<header>
+				<h1>{{data.portfolio.title}}</h1>
+				<h5>
+					{{{categoryList data.portfolio.categories prefix="Category: "}}}
+				</h5>
+			</header>
+			<div class="portfolio">
+				{{#each data.portfolio.images}}<img src="{{{cloudinaryUrl width=750 height=450 crop='fit' }}}" class="img-responsive">{{/each}}
+				{{{data.portfolio.content}}}
+			</div>
+		</article>
 	</div>
 </div>

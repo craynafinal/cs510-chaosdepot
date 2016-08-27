@@ -1,6 +1,3 @@
-// Constant variables
-var constants = require('./constants');
-
 // Simulate config options from your production environment by
 // customising the .env file in your project's root folder.
 require('dotenv').config();
@@ -23,8 +20,9 @@ i18n.configure({
 // and documentation.
 
 keystone.init({
-	'name': constants.TEXT_APP_NAME,
-	'brand': constants.TEXT_APP_NAME,
+	'name': 'Chaos Depot',
+	'brand': 'Chaos Depot',
+	'description': 'Drawings, Graphic Designs, and Programmings',
 
 	'less': 'public',
 	'static': 'public',
