@@ -20,6 +20,7 @@
 h1, h2, h3, h4 {
 	font-family: 'Aero Matics Regular';
 	margin-top: 0px;
+	color: #000000;
 }
 /* Font override ends */
 
@@ -55,7 +56,7 @@ body {
 }
 
 .caption > .lead {
-	font-size: 16px;
+	font-size: 14px;
 }
 
 .caption > hr {
@@ -65,9 +66,25 @@ body {
 
 .caption > .date {
 	margin-bottom: 0px;
+	font-size: 12px;
+}
+
+h2 > a {
+	color: inherit;
+	font-size: 24px;
 }
 
 /* Masonry thumbnail adjustment ends */
+
+/* Side navbar adjustment starts */
+.navbar-text {
+	font-size: 12px;
+}
+
+.navbar-fixed-side .navbar-form, .navbar-fixed-side .navbar-nav > li > a {
+	border-bottom: 1px dashed #e7e7e7;
+}
+/* Side navbar adjustment ends */
 
 /* Small screen specific adjustment starts */
 @media(max-width: @container-tablet) {
