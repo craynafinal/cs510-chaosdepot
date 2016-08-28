@@ -15,7 +15,7 @@ var Portfolio = new keystone.List('Portfolio', {
 Portfolio.add({
 	title: { type: String, required: true },
 	author: { type: Types.Relationship, ref: 'User', index: true },
-	state: { type: Types.Select, options: 'draft, published, archived', default: 'draft', index: true },
+	state: { type: Types.Select, options: 'draft, published, archived', default: 'published', index: true },
 	publishedDate: { type: Types.Date, default: Date.now, index: true, dependsOn: { state: 'published' } },
 	categories: { type: Types.Relationship, ref: 'Category', many: true  },
 	style: { type: Types.Select, options: 'default, book, webapp', default: 'default', index: true },
