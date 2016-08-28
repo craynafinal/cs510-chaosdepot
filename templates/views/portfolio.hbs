@@ -1,28 +1,52 @@
 <article>
-	<p><a href="#" onclick="goBack()">&larr; back</a></p>
-	<hr>
 	<header>
 		<h1>{{data.portfolio.title}}</h1>
 		<h5>
-			{{{categoryList data.portfolio.categories prefix="Category: "}}}
+			{{{categoryList data.portfolio.categories}}}
 		</h5>
 		<h5>
-			{{date data.portfolio.publishedDate}}
+			{{date data.portfolio.publishedDate format=(__ '#date_format#')}}
 		</h5>
+
+		{{#ifeq data.portfolio.style "webapp"}}
+		<a class="btn btn-large btn-primary" target="_blank" href="{{data.portfolio.link}}">
+      <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
+      {{__ "View App"}}
+    </a>
+		{{/ifeq}}
+
+		<a class="btn btn-large btn-default" href="#" onclick="goBack()">
+			<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+			{{__ "Go Back"}}
+		</a>
+
 	</header>
+	<hr>
 	<div class="portfolio">
 		{{#ifeq data.portfolio.style "book"}}
-		book
-		{{else}} {{#ifeq data.portfolio.style "webapp"}}
-		<a class="btn btn-large btn-info" target="_blank" href="{{data.portfolio.link}}">View App</a>
 		{{#each data.portfolio.images}}
 		<img src="{{{cloudinaryUrl height=450 crop='fill'}}}" class="img-responsive">
 		{{/each}}
-		{{else}}			
+		{{else}}
 		{{#each data.portfolio.images}}
 		<img src="{{{cloudinaryUrl height=450 crop='fill'}}}" class="img-responsive">
 		{{/each}}
-		{{{data.portfolio.content}}}
-		{{/ifeq}}{{/ifeq}}
+		{{/ifeq}}
+		<div class="col-sm-12">
+			{{{data.portfolio.content}}}
+		</div>
+	</div>
+	<div class="col-sm-12">
+		<hr>
+		
+		<a class="btn btn-large btn-default" href="#">
+			<span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+			{{__ "Top"}}
+		</a>
+
+		<a class="btn btn-large btn-default" href="#" onclick="goBack()">
+			<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+			{{__ "Go Back"}}
+		</a>
 	</div>
 </article>

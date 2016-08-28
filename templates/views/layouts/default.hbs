@@ -89,43 +89,43 @@
 								</ul>
 								<!--search bar starts-->
 								<form class="navbar-form navbar-left" method="get" onsubmit="return false;">
-									<div class="form-group">
-										<input type="text" name="search" class="form-control" placeholder={{__ "Search Portfolio"}}>
+									<div class="form-group input-group-btn">
 										<select name="category" class="form-control">
 											<option value="">{{__ "Any Category"}}</option>
 											{{# each data.categories}}
 											<option value="{{categoryUrl key}}">{{__ name}}</option>
 											{{/each}}
 										</select>
+										<input type="text" name="search" class="form-control" placeholder={{__ "Search Portfolio"}}>
 									</div>
-									<div class="form-actions">
-										<button type="submit" class="btn btn-default" onclick="searchPortfolio(this)">
-											{{__ "Submit"}}
+									<span class="form-actions input-group-btn">
+										<button type="submit" class="btn btn-primary" onclick="searchPortfolio(this)">
+											<span class="glyphicon glyphicon-search"></span>	
 										</button>
-									</div>
+									</span>
 								</form>
 								<!--search bar ends-->
-<!--
-								<form class="navbar-form pull-left" role="search" method="get" id="searchform" action="/">
-									<div class="input-group">
-										<div class="input-group-btn">
-											<button type="button" id="searchcategory" value="BLOG" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">BLOG <span class="caret"></span></button>
-
-											<ul id="searchdropdown" class="dropdown-menu" role="menu">
-												<li><a href="javascript:void(0)">BLOG</a></li>
-												<li><a href="javascript:void(0)">FORUM</a></li>
-												<li><a href="javascript:void(0)">DOCS</a></li>
-												<li class="divider"></li>
-												<li><a href="javascript:void(0)">ANY</a></li>          
-											</ul>
-										</div>
-										<input type="text" class="form-control" value="" placeholder="Search..." name="s" id="s">
-										<div class="input-group-btn">
-											<button type="submit" id="searchsubmit" value="Search" class="btn btn-success"><span class="glyphicon glyphicon-search"></span></button>
-										</div>
+								
+								<div class="input-group navbar-side-dropdown">
+									<div class="input-group-btn">
+										<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											{{__ "Any Category"}} <span class="caret"></span>
+										</button>
+										<ul class="dropdown-menu">
+											<li><a href="#">{{__ "Any Category"}}</a></li>
+											<li role="separator" class="divider"></li>
+											{{#each data.categories}}
+											<li><a href="#">{{__ name}}</a></li>
+											{{/each}}
+										</ul>
 									</div>
-								</form> 
--->
+									<input type="text" class="form-control" aria-label="...">
+									<span class="input-group-btn">
+										<button class="btn btn-primary" type="button">
+											<span class="glyphicon glyphicon-search"></span>
+										</button>
+									</span>
+								</div>
 								<!--language bar starts-->
 								<form class="navbar-form navbar-left">
 									<label>{{__ "Select Language"}}
@@ -149,8 +149,8 @@
 						</div>
 					</nav>
 				</div>
-				<div class="col-sm-8 col-md-9 col-lg-10 container-fluid">
-					<div id="body">
+				<div class="col-sm-8 col-md-9 col-lg-10">
+					<div id="body" class="container-fluid">
 						<!--
 							Flash messages allow you to display once-off status messages to users, e.g. form
 							validation errors, success messages, etc

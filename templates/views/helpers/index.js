@@ -18,7 +18,12 @@ module.exports = function () {
 	 * i18n Locale Helper
 	 * ==================
 	 */
-	// performs __ operation of i18n
+	// Performs __ operation of i18n for translation.
+	// The text parameter must be a string type variable or a string data.
+	// Example) {{__ "text"}}
+	//
+	// Note: Special cases
+	// - #date_format# will return a date format string associated to a specific language.
 	_helpers.__ = function (text, options) {
 		return i18n.__(text);
 	}
@@ -303,22 +308,24 @@ module.exports = function () {
 	//      </div>
 	//   {{/if}}`
 
+	// Note: Added _helpers.__() for each error message string for translation.
+
 	_helpers.flashMessages = function (messages) {
 		var output = '';
 		for (var i = 0; i < messages.length; i++) {
 
 			if (messages[i].title) {
-				output += '<h4>' + messages[i].title + '</h4>';
+				output += '<h4>' + _helpers.__(messages[i].title) + '</h4>';
 			}
 
 			if (messages[i].detail) {
-				output += '<p>' + messages[i].detail + '</p>';
+				output += '<p>' + _helpers.__(messages[i].detail) + '</p>';
 			}
 
 			if (messages[i].list) {
 				output += '<ul>';
 				for (var ctr = 0; ctr < messages[i].list.length; ctr++) {
-					output += '<li>' + messages[i].list[ctr] + '</li>';
+					output += '<li>' + _helpers.__(messages[i].list[ctr]) + '</li>';
 				}
 				output += '</ul>';
 			}

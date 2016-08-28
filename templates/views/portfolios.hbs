@@ -1,6 +1,6 @@
 <div class="container-fluid">
 	{{#if filters.search}}
-	<h4>Search Results: {{data.portfolios.total}}</h4>
+	<h4>{{__ "Search Results"}}: {{data.portfolios.total}}</h4>
 	{{/if}}
 	<div class="row masonry-container">
 		{{# each data.portfolios.results}}
@@ -34,7 +34,7 @@
 				{{/if}}
 					<p class="lead text-muted">{{{categoryList categories}}}</p>
 					<hr>
-					<p class="date">{{date publishedDate}}</p>
+					<p class="date">{{date publishedDate format=(__ '#date_format#')}}</p>
 				</div>
 
 			</div>

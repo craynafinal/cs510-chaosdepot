@@ -18,5 +18,22 @@
 	"optional": "선택사항",
 	"Message": "메세지",
 	"Leave a message here": "여기에 메세지를 남겨주세요",
-	"Your message has been successfully sent!": "메세지가 성공적으로 전송되었습니다!"
+	"Your message has been successfully sent!": "메세지가 성공적으로 전송되었습니다!",
+	"Page Not Found": "페이지를 찾을 수 없습니다",
+	"Internal Server Error": "내부 서버 오류",
+	"Home Page": "홈페이지",
+	"Go Back": "이전 페이지",
+	"Requested URL does not exist on this server.": "요청된 URL을 서버에서 찾을 수 없습니다.",
+	"Please try again.": "다시 시도해 주십시오.",
+	"There was an error on the server side.": "서버에 오류가 발생했습니다.",
+	"View App": "앱 보러가기",
+	"Top": "상단으로",
+	"#date_format#": "YYYY/MM/DD",
+	"Send": "보내기",
+	"Search Results": "검색 결과",
+	"You must solve the captcha to send a message.": "로봇방지 버튼을 누르시고 메세지를 보내주십시오.",
+	"There was a problem submitting your enquiry:": "메세지 전송에 오류가 발생했습니다:",
+	"Name is required": "이름을 입력하십시오",
+  "Email is required": "이메일을 입력하십시오",
+  "Message is required": "메세지를 입력하십시오"
 }

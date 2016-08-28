@@ -1,1 +1,22 @@
-500
+<div class="col-sm-8 col-md-6">
+  <h1>500: {{__ "Internal Server Error"}}</h1>
+  <hr>
+  <div class="errorContent">
+    {{__ "There was an error on the server side."}} {{__ "Please try again."}}
+  </div>
+  <div>
+		<a class="btn btn-large btn-primary" href="/">
+      <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+      {{__ "Home Page"}}
+    </a>
+    <a class="btn btn-large btn-default" href="#" onclick="goBack()">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      {{__ "Go Back"}}
+    </a>
+		<a class="btn btn-large btn-default" href="/contact">
+			<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+			{{__ "Contact"}}
+		</a>
+  </div>
+</div>
+
