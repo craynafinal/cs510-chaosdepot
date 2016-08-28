@@ -18,7 +18,7 @@
 			<meta name="description" content="{{description}}">            
 		{{/if}}
 
-		<meta name="keywords" content="{{# each data.portfolio.categories}}{{name}}, {{/each}}">
+		<meta name="keywords" content="{{# each categoryLinks}}{{label}}, {{/each}}{{title}}">
 		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 		<link href="/styles/site.min.css" rel="stylesheet">
 		<link href="/styles/side_navbar/navbar-fixed-side.css" rel="stylesheet">
