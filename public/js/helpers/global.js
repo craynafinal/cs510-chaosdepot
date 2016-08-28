@@ -15,6 +15,14 @@ $(document).ready(function() {
       	$("#searchcategory").val($(this).text());
 	});
 
+	// Button setup
+	$('.buttonGoBack').click(function () {
+		window.history.back();
+	});
+
+	// Language select
+	
+	// Search
 });
 
 function selectLanguage(select) {
@@ -33,8 +41,3 @@ function selectLanguage(select) {
 function searchPortfolio(searchForm) {
 	window.location.href = searchForm.form.category.value + '/search/' + searchForm.form.search.value;
 }
-
-function goBack() {
-	window.history.back();
-}
-

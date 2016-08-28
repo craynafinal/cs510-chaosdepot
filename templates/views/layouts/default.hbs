@@ -76,11 +76,11 @@
 									<li class="dropdown">
 										<a class="dropdown-togle" data-toggle="dropdown" href="#">
 											{{__ "Categories"}}
-											<b class="caret"></b>
+											<span class="caret"></span>
 										</a>
 										<ul class="dropdown-menu">
 											{{# each categoryLinks}}
-											<li {{#ifeq category key}}class="active"{{else}}{{/ifeq}}>
+											<li {{#ifeq ../section key}}class="active"{{else}}{{/ifeq}}>
 												<a href="{{href}}">{{__ label}}</a>
 											</li>
 											{{/each}}
