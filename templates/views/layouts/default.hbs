@@ -89,29 +89,31 @@
 								</ul>
 								<!--search bar starts-->
 								<form class="navbar-form navbar-left" method="get" onsubmit="return false;">
-									<div class="form-group input-group-btn">
+									<div class="form-group">
+										<input type="text" name="search" class="form-control" placeholder={{__ "Search Portfolio"}}>
 										<select name="category" class="form-control">
 											<option value="">{{__ "Any Category"}}</option>
 											{{# each data.categories}}
 											<option value="{{categoryUrl key}}">{{__ name}}</option>
 											{{/each}}
 										</select>
-										<input type="text" name="search" class="form-control" placeholder={{__ "Search Portfolio"}}>
+										<span class="form-actions">
+											<button type="submit" class="btn btn-default" onclick="searchPortfolio(this)">
+												<span class="glyphicon glyphicon-search"></span>
+												{{__ "Submit"}}
+											</button>
+										</span>
+
 									</div>
-									<span class="form-actions input-group-btn">
-										<button type="submit" class="btn btn-primary" onclick="searchPortfolio(this)">
-											<span class="glyphicon glyphicon-search"></span>	
-										</button>
-									</span>
 								</form>
 								<!--search bar ends-->
-								
-								<div class="input-group navbar-side-dropdown">
+
+								<div class="input-group">
 									<div class="input-group-btn">
 										<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 											{{__ "Any Category"}} <span class="caret"></span>
 										</button>
-										<ul class="dropdown-menu">
+										<ul class="dropdown-menu" id="searchCategory">
 											<li><a href="#">{{__ "Any Category"}}</a></li>
 											<li role="separator" class="divider"></li>
 											{{#each data.categories}}
@@ -121,9 +123,7 @@
 									</div>
 									<input type="text" class="form-control" aria-label="...">
 									<span class="input-group-btn">
-										<button class="btn btn-primary" type="button">
-											<span class="glyphicon glyphicon-search"></span>
-										</button>
+										<button class="btn btn-default" type="button">Go!</button>
 									</span>
 								</div>
 								<!--language bar starts-->

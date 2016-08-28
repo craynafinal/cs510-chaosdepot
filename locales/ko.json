@@ -34,6 +34,6 @@
 	"You must solve the captcha to send a message.": "로봇방지 버튼을 누르시고 메세지를 보내주십시오.",
 	"There was a problem submitting your enquiry:": "메세지 전송에 오류가 발생했습니다:",
 	"Name is required": "이름을 입력하십시오",
-  "Email is required": "이메일을 입력하십시오",
-  "Message is required": "메세지를 입력하십시오"
+	"Email is required": "이메일을 입력하십시오",
+	"Message is required": "메세지를 입력하십시오"
 }
