@@ -1,1 +1,1 @@
-web: node keystone.js
+web: TZ="America/Los_Angeles" node keystone.js
