@@ -22,10 +22,6 @@ Portfolio.add({
 	link: { type: Types.Url, dependsOn: { style: 'webapp' } },
 	images: { type: Types.CloudinaryImages, autoCleanup: true },
 	content: { type: Types.Html, wysiwyg: true, height: 400 },
-  meta: {
-		title: { type: String },
-		description: { type: String }
-  },
 });
 
 Portfolio.schema.virtual('content.full').get(function () {

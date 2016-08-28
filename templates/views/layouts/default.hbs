@@ -7,27 +7,18 @@
 		<meta http-equiv="Content-Language" content="{{currentLocale}}"/> 
 
 		{{#if data.portfolio}}
-				{{#if data.portfolio.meta.title}}
-						<title>{{title}}: {{data.portfolio.meta.title}}</title>
-				{{else}}
-						<title>{{title}}: {{data.portfolio.title}}</title>
-				{{/if}}
-				{{#if data.portfolio.meta.description}}
-						<meta name="description" content="{{data.portfolio.meta.description}}">
-				{{else}}
-						<meta name="description" content="{{data.portfolio.content.brief}}">
-				{{/if}}
-				<meta property="article:published_time" content="{{data.portfolio.publishedDate}}">
-				{{# each data.portfolio.categories}}
-						<meta property="article:tag" content="{{name}}">
-				{{/each}}
-				<meta name="keywords" content="{{# each data.portfolio.categories}}{{name}}, {{/each}}">    
+			<title>{{title}}: {{data.portfolio.title}}</title>
+			<meta name="description" content="{{data.portfolio.title}} from {{title}}">
+			<meta property="article:published_time" content="{{data.portfolio.publishedDate}}">
+			{{# each data.portfolio.categories}}
+					<meta property="article:tag" content="{{name}}">
+			{{/each}}
 		{{else}}
-				<title>{{title}}: {{description}}</title>
-				<meta name="description" content="{{description}}">            
-				<meta name="keywords" content="Node.js, development, api">
-		{{/if}}  
+			<title>{{title}}: {{description}}</title>
+			<meta name="description" content="{{description}}">            
+		{{/if}}
 
+		<meta name="keywords" content="{{# each data.portfolio.categories}}{{name}}, {{/each}}">
 		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 		<link href="/styles/site.min.css" rel="stylesheet">
 		<link href="/styles/side_navbar/navbar-fixed-side.css" rel="stylesheet">
