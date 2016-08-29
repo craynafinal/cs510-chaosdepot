@@ -10,12 +10,6 @@ $(document).ready(function() {
 		});   
 	});
 
-	// Test Function
-	$("#searchdropdown li a").click(function(){
-		$("#searchcategory").html($(this).text() + ' <span class="caret"></span>');
-      	$("#searchcategory").val($(this).text());
-	});
-
 	// Button setup
 	$('.buttonGoBack').click(function () {
 		window.history.back();

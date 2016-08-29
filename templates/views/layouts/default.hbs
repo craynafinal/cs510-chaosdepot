@@ -7,15 +7,15 @@
 		<meta http-equiv="Content-Language" content="{{currentLocale}}"/> 
 
 		{{#if data.portfolio}}
-			<title>{{title}}: {{data.portfolio.title}}</title>
-			<meta name="description" content="{{data.portfolio.title}} from {{title}}">
-			<meta property="article:published_time" content="{{data.portfolio.publishedDate}}">
-			{{# each data.portfolio.categories}}
-					<meta property="article:tag" content="{{name}}">
-			{{/each}}
+		<title>{{title}}: {{data.portfolio.title}}</title>
+		<meta name="description" content="{{data.portfolio.title}} from {{title}}">
+		<meta property="article:published_time" content="{{data.portfolio.publishedDate}}">
+		{{# each data.portfolio.categories}}
+				<meta property="article:tag" content="{{name}}">
+		{{/each}}
 		{{else}}
-			<title>{{title}}: {{description}}</title>
-			<meta name="description" content="{{description}}">            
+		<title>{{title}}: {{description}}</title>
+		<meta name="description" content="{{description}}">            
 		{{/if}}
 
 		<meta name="keywords" content="{{# each categoryLinks}}{{label}}, {{/each}}{{title}}">
@@ -80,59 +80,44 @@
 								</ul>
 								<!--search bar starts-->
 								<form class="navbar-form navbar-left" method="get" onsubmit="return false;">
-									<div class="form-group">
-										<input type="text" name="search" class="form-control" placeholder={{__ "Search Portfolio"}}>
-										<select name="category" class="form-control">
+									<div class="input-group">
+										<input type="text" name="search" class="form-control navbar-input" placeholder={{__ "Search Portfolio"}}>
+										<span class="input-group-btn">
+											<button type="submit" class="btn btn-default navbar-button" onclick="searchPortfolio(this)">
+												<span class="glyphicon glyphicon-search"></span>
+											</button>
+										</span>
+									</div>
+									<div class="inner-addon right-addon">
+										<span class="glyphicon glyphicon-chevron-down"></span>
+										<select name="category" class="form-control navbar-select">
 											<option value="">{{__ "Any Category"}}</option>
 											{{# each data.categories}}
 											<option value="{{categoryUrl key}}">{{__ name}}</option>
 											{{/each}}
 										</select>
-										<span class="form-actions">
-											<button type="submit" class="btn btn-default" onclick="searchPortfolio(this)">
-												<span class="glyphicon glyphicon-search"></span>
-												{{__ "Submit"}}
-											</button>
-										</span>
-
 									</div>
 								</form>
 								<!--search bar ends-->
-
-								<div class="input-group">
-									<div class="input-group-btn">
-										<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											{{__ "Any Category"}} <span class="caret"></span>
-										</button>
-										<ul class="dropdown-menu" id="searchCategory">
-											<li><a href="#">{{__ "Any Category"}}</a></li>
-											<li role="separator" class="divider"></li>
-											{{#each data.categories}}
-											<li><a href="#">{{__ name}}</a></li>
-											{{/each}}
-										</ul>
-									</div>
-									<input type="text" class="form-control" aria-label="...">
-									<span class="input-group-btn">
-										<button class="btn btn-default" type="button">Go!</button>
-									</span>
-								</div>
 								<!--language bar starts-->
 								<form class="navbar-form navbar-left">
 									<label>{{__ "Select Language"}}
-										<select name="language" onchange="selectLanguage(this)" class="form-control">
-											{{#each locales}}
-											<option value="{{this}}"{{#ifeq ../currentLocale this}}selected{{else}}{{/ifeq}}>
-												{{__ this}}
-											</option>
-											{{/each}}
-										</select>
+										<div class="inner-addon right-addon">
+											<span class="glyphicon glyphicon-chevron-down"></span>
+											<select name="language" onchange="selectLanguage(this)" class="form-control navbar-select">
+												{{#each locales}}
+												<option value="{{this}}"{{#ifeq ../currentLocale this}}selected{{else}}{{/ifeq}}>
+													{{__ this}}
+												</option>
+												{{/each}}
+											</select>
+										</div>
 									</label>
 								</form>
 								<!--language bar ends-->
 								<!--copyright starts-->
 								<p class="navbar-text">
-									Copyright ⓒ {{date.year}} <a href="/contact">{{title}}</a>. All rights reserved.
+									Copyright ⓒ {{date.year}} <a href="/contact">{{title}}</a>
 								</p>
 								<!--copyright ends-->
 							</div>
