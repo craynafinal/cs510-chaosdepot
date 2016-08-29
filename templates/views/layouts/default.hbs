@@ -81,16 +81,16 @@
 								<!--search bar starts-->
 								<form class="navbar-form navbar-left" method="get" onsubmit="return false;">
 									<div class="input-group">
-										<input type="text" name="search" class="form-control navbar-input" placeholder={{__ "Search Portfolio"}}>
+										<input type="text" name="search" id="navbar-search-input" class="form-control navbar-input" placeholder={{__ "Search Portfolio"}}>
 										<span class="input-group-btn">
-											<button type="submit" class="btn btn-default navbar-button" onclick="searchPortfolio(this)">
+											<button type="submit" id="navbar-search-button" class="btn btn-default navbar-button">
 												<span class="glyphicon glyphicon-search"></span>
 											</button>
 										</span>
 									</div>
 									<div class="inner-addon right-addon">
 										<span class="glyphicon glyphicon-chevron-down"></span>
-										<select name="category" class="form-control navbar-select">
+										<select name="category" id="navbar-search-select" class="form-control navbar-select">
 											<option value="">{{__ "Any Category"}}</option>
 											{{# each data.categories}}
 											<option value="{{categoryUrl key}}">{{__ name}}</option>

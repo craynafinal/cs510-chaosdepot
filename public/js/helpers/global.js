@@ -15,9 +15,14 @@ $(document).ready(function() {
 		window.history.back();
 	});
 
-	// Language select
+	// Sidebar search
+	$('#navbar-search-button').click(function () {
+		var select = $('#navbar-search-select option:selected');
+		var search = $('#navbar-search-input');
+		window.location.href = select.val() + '/search/' + search.val();
+	});
 	
-	// Search
+	// Sidebar language selector
 
 	$('#searchCategory').css({'display': ''});
 });

@@ -33,5 +33,7 @@
 	"There was an error on the server side.": "There was an error on the server side.",
 	"Please try again.": "Please try again.",
 	"Home Page": "Home Page",
-	"View App": "View App"
+	"View App": "View App",
+	"Page Not Found": "Page Not Found",
+	"Requested URL does not exist on this server.": "Requested URL does not exist on this server."
 }
