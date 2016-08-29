@@ -24,7 +24,7 @@ i18n.configure({
 keystone.init({
 	'name': 'Chaos Depot',
 	'brand': 'Chaos Depot',
-	'description': 'Drawings, Graphic Designs, and Programmings',
+	'description': 'Illustrations, Graphic Designs, and Programmings',
 
 	'less': 'public',
 	'static': 'public',
