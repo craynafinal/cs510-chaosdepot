@@ -28,6 +28,15 @@
 	padding: 2px 15px 2px 15px;
 }
 
+.navbar-fixed-side .navbar-nav > li > a {
+	padding-top: 8px !important;
+	padding-bottom: 8px !important;
+}
+
+.navbar-fixed-side .navbar-nav .dropdown-menu > li > a {
+	padding: 4px 15px 4px 25px !important;
+}
+
 @media(max-width: @container-tablet) {
   .navbar-form {
     margin-bottom: -9px;
@@ -36,11 +45,4 @@
 	.navbar-brand {
     padding: 8px 0px 0px 12px;
   }
-}
-
-@media (min-width: 768px) {
-	.navbar-fixed-side .navbar-nav .dropdown-menu > li > a,
-	.navbar-fixed-side .navbar-nav .dropdown-menu .dropdown-header {
-		padding: 2px 15px 2px 25px;
-	}
 }
