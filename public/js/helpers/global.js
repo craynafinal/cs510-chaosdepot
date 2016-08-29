@@ -23,23 +23,15 @@ $(document).ready(function() {
 	});
 	
 	// Sidebar language selector
-
-	$('#searchCategory').css({'display': ''});
-});
-
-function selectLanguage(select) {
-	if (select.selectedIndex.value !== '') {
+	$('#navbar-language-select').change(function () {
 		var urlPart = window.location.pathname.split('/')[1];
-		var selected = select.options[select.selectedIndex].value;
+		var selected = $('#navbar-language-select option:selected').val();
 
 		if (urlPart.length === 2) {
+			console.log(window.location.pathname);
 			window.location.href = window.location.pathname.replace(urlPart, selected);
 		} else {
 			window.location.href = '/' + selected + '/' + window.location.pathname;
 		}
-	}
-}
-
-function searchPortfolio(searchForm) {
-	window.location.href = searchForm.form.category.value + '/search/' + searchForm.form.search.value;
-}
+	});
+});

@@ -72,7 +72,7 @@
 										<ul class="dropdown-menu">
 											{{# each categoryLinks}}
 											<li {{#ifeq ../section key}}class="active"{{else}}{{/ifeq}}>
-												<a href="{{href}}">{{__ label}}</a>
+												<a href="{{href}}">{{label}}</a>
 											</li>
 											{{/each}}
 										</ul>
@@ -104,7 +104,7 @@
 									<label>{{__ "Select Language"}}
 										<div class="inner-addon right-addon">
 											<span class="glyphicon glyphicon-chevron-down"></span>
-											<select name="language" onchange="selectLanguage(this)" class="form-control navbar-select">
+											<select name="language" id="navbar-language-select" class="form-control navbar-select">
 												{{#each locales}}
 												<option value="{{this}}"{{#ifeq ../currentLocale this}}selected{{else}}{{/ifeq}}>
 													{{__ this}}
