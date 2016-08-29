@@ -28,5 +28,10 @@
 	"Websites": "Websites",
 	"Comics": "Comics",
 	"Go Back": "Go Back",
-	"Top": "Top"
+	"Top": "Top",
+	"Internal Server Error": "Internal Server Error",
+	"There was an error on the server side.": "There was an error on the server side.",
+	"Please try again.": "Please try again.",
+	"Home Page": "Home Page",
+	"View App": "View App"
 }

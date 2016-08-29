@@ -4,7 +4,7 @@
 		<h5>
 			{{{categoryList data.portfolio.categories}}}
 		</h5>
-		<h5>
+		<h5 class="date">
 			{{date data.portfolio.publishedDate format=(__ '#date_format#')}}
 		</h5>
 
@@ -23,15 +23,11 @@
 	</header>
 	<hr>
 	<div class="portfolio">
-		{{#ifeq data.portfolio.style "book"}}
 		{{#each data.portfolio.images}}
-		<img src="{{{cloudinaryUrl height=450 crop='fill'}}}" class="img-responsive">
+		<a href="{{{cloudinaryUrl}}}" target="_blank">
+			<img src="{{{cloudinaryUrl}}}" class="img-responsive">
+		</a>
 		{{/each}}
-		{{else}}
-		{{#each data.portfolio.images}}
-		<img src="{{{cloudinaryUrl height=450 crop='fill'}}}" class="img-responsive">
-		{{/each}}
-		{{/ifeq}}
 		<div class="content">
 			{{{data.portfolio.content}}}
 		</div>
