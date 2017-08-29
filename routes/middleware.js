@@ -131,9 +131,7 @@ exports.detectLanguage = function(req, res, next) {
 		next();
 	} else {
 		var currentLocale = i18n.getLocale();
-
 		res.redirect(urlLocale.length === 2 ? req.url.replace(urlLocale, currentLocale) : '/' + currentLocale + req.url);
-		console.log(currentLocale + " " + req.url + " " + urlLocale);
 	}
 
 }
